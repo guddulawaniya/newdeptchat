@@ -1,0 +1,96 @@
+<resources>
+    <string name="app_name">Deptchat</string>
+
+    <string name="icon_content_description">Dialog Icon</string>
+    <string name="icon_desc">Ad icon</string>
+    <string name="image_desc">Ad image</string>
+    <string name="item_view_role_description">Tab</string>
+    <string name="sponsored">sponsored</string>
+    <string name="quicklogin">Quick Login</string>
+
+    //testing ids
+    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_banner_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_interstitial_id">ca-app-pub-3940256099942544/1033173712</string>
+
+
+    <string name="Applovin_APP_ID">GgLgSCRJuuwaT0BTcIsnQ1DPOdEioGgavMteEAVnFP4HrKRiBrwhezR0TgSh1L_oOZTelQGMC9PQeSHPsUf8fW</string>
+    <string name="Applovin_bannerid">964ed71fd0cb658e</string>
+    <string name="interstitialAd_ID">fc3602e11f8a3919</string>
+    <string name="native_ID">c7f5f10366936504</string>
+    <string name="native_small_ID">4432d64b3d4153ca</string>
+
+    <string name="ONESIGNAL_APP_ID">d9db185c-bd94-4a56-a4f8-6f0f46ce8352</string>
+    <string name="privacyurl"> https://www.google.com/</string>
+
+
+    <string name="rule_1_heading">1. Please respect other users</string>
+    <string name="rule_1_content">
+    • Use profanity of any kind, behave in an inappropriate manner, and offend other users through either actions or words;\n
+    • Threaten other users in any way;\n
+    • No flirting;\n
+    • No pushing to send pics or contact details;\n
+    • No racism, bullying, or violence;\n
+    • No sexual/abusive behavior;\n
+    • No spam.
+</string>
+
+    <string name="unlock_title">Become Premium to Unlock Unlimited Private Calls With me ! I\'m Waiting you</string>
+    <string name="rule_2_heading">2. Vulgar or adult behavior in chat is unacceptable</string>
+    <string name="rule_2_content">
+    • Users may not display themselves in chat while naked or wearing underwear only;\n
+    • Users may not show their naked torso without also displaying their face;\n
+    • Users may not move their webcam below their chest area;\n
+    • Users may not display or flash their genitals or other intimate parts of their body;\n
+    • Users may not touch their genitals in a sexual manner, even through their clothes;\n
+    • Users may not suggest or ask other users for virtual- or cyber-sex;\n
+    • Users may not use words or phrases that may have obscene, vulgar, or sexual context;\n
+    • Users may not make gestures or take any actions that might be considered obscene.
+</string>
+
+    <string name="rule_3_heading">3. Users of this app would like to see who they are talking to</string>
+    <string name="rule_3_content">
+    • Do not turn your webcam to face the screen of your computer, mobile phone, tablet, or television;\n
+    • Do not face your webcam towards still pictures or any irrelevant images;\n
+    • Do not face your webcam towards any text messages, books, or other forms of written text;\n
+    • Do not use any webcam emulator or other software which helps you to broadcast irrelevant images and/or video instead of yourself.
+</string>
+
+    <string name="rule_4_heading">4. All forms of spam are forbidden from the chat</string>
+    <string name="rule_4_content">
+    • Broadcast or display advertising images or messages;\n
+    • Request other users to take part in perform any actions on app outside Video Chat app.
+</string>
+
+    <string name="rule_5_heading">5. Should another user violate the Chat Rules in your presence</string>
+    <string name="rule_5_content">
+    • Complain about the actions of another user along with an image and message. Based on the evidence, our moderators will make a decision on whether or not to ban the offender. Moderators are available to consider and react to complaints 24 hours a day, 7 days a week, including weekends and holidays;\n
+    • Should a user receive numerous complaints about the violations of Chat Rules, system bans are in place to automatically ban offenders. System bans take into account numerous factors to avoid unfair bans or banning users by mistake; It is essential that if another user violates the Chat Rules or offends you any way the issue is resolved by an official complaint only. Do not attempt to resolve the issue by offending the other user in response or violating the Chat Rules yourself. If you do, you become a violator also and are eligible to get banned.
+</string>
+
+    <string name="rule_disclaimer">
+    Please Note: We are continually working hard and putting a high focus on preventing any violation of our Chat Rules and punishing users who continue to breach them. However, we cannot be held responsible for the actions of all users and cannot guarantee that all violators will be banned. When you complain and report against violators, you are helping us make this app a safer chat environment and helping us to find and remove all violators.\n
+    \n
+    By using our chat service, you accept and agree to the Chat Rules mentioned above. We reserve the right to change or amend these rules from time to time. We will attempt to notify users of such changes; however, it is the responsibility of all users on this app to track these changes themselves.
+</string>
+    <string name="privacytext">Privacy Policy  Video Calling Team built the VIdeo Calling App as a Free app. This SERVICE is provided by Apps World PVT LTD at no cost and is intended for use as is. This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.   If you choose to use my Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that I collect is used for providing and improving the Service. I will not use or share your information with anyone except as described in this Privacy Policy. The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at Kisan Yojana unless otherwise defined in this Privacy Policy.   Information Collection and Use While using Our Application, in order to provide features of Our Application, We may collect, with Your prior permission: Pictures and other information from your Device\'s camera and photo library We use this information to provide features of Our Service, to improve and customize Our Service. The information may be uploaded to the Company\'s servers and/or a Service Provider\'s server or it may be simply stored on Your device.  For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information. The information that I request will be retained on your device and is not collected by me in any way. The app does use third party services that may collect information used to identify you. Link to privacy policy of third party service providers used by the app Google Play Services Google Crash Analytics Facebook Iron source Applovin Admob One Signal Log Data I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.   Cookies: Cookies are files with a small amount of data that are commonly used as anonymous unique identifiers. These are sent to your browser from the websites that you visit and are stored on your device\'s internal memory. This Service does not use these “cookies” explicitly. However, the app may use third party code and libraries that use “cookies” to collect information and improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.   Service Provider: I may employ third-party companies and individuals due to the following reasons: To facilitate our Service; To provide the Service on our behalf; To perform Service-related services; or To assist us in analyzing how our Service is used. I want to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.  Security: I value your trust in providing us your Personal Information, thus we are striving to use commercially acceptable means of protecting it. But remember that no method of transmission over the internet, or method of electronic storage is 100% secure and reliable, and I cannot guarantee its absolute security.  Links to Other sites This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.  Children’s Privacy: These Services do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13 years of age. In the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do necessary actions.  Changes to This Privacy Policy: I may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. I will notify you of any changes by posting the new Privacy Policy on this page. Contact us If you have any questions or suggestions about my Privacy Policy, do not hesitate to contact me at pmkisanyojana001@gmail.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    After including these strings in your strings.xml file, you can use them in your layout XML and
+    Java code as shown previously to display the content with bullets and line breaks.
+
+
+    <!--&lt;!&ndash;    <string name="app_open_ads_uint_id">ca-app-pub-3940256099942544/3419835294</string>&ndash;&gt;-->
+    <string name="Admob_APP_ID">ca-app-pub-8746141761947914~5288401991</string>
+
+
+    <!--    cheange these id-->
+    <string name="facebook_app_id">408180348374051</string>
+    <string name="fb_login_protocol_scheme">fb1178420689695972</string>
+    <string name="facebook_client_token">fb9134e654bc479083cef2acf4f73258</string>
+    <string name="license">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAj7NM2zJfwBSXgrZZ262LaBWGpg3gZBc5+b4WN9EoHC7rBLu0i04lpnxGjzUcK/+DVqjyGEwFe/tqfFI88gSFwFQqvJ8M0xeIhTAOF8e+Qw3doqMCbx9YoQNagVri/URGI3C434Y6l60I9xq9T5Slphgt4jNJTrklVbROUpIG4yOSxQfcIGuvHFAKygv7IYw9bLy+XrejH9ZYR1macS3rXOwefig5+RTh3IoZiuNfNXp6du7GdHoblSFCwQIbkrETYKniYwZ/WHZZtK++LMW2wtIOw8+Hcw5lW67BlWZoFBzzLoWNGZAUPlknzDUO6uw0QQXKZnpLwjs5YA9bwk9wQQIDAQAB</string>
+    <string name="strike_text"><strike>₹299</strike> </string>
+    <string name="strike_text2"><strike>₹399</strike> </string>
+    <string name="strike_text3"><strike>₹599</strike> </string>
+</resources>

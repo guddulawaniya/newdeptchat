@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector>
+
+    <selector>
+        <!--        <item android:state_checked="true" android:drawable="@color/your_checked_color" />-->
+        <!--        <item android:state_checked="false" android:drawable="@color/your_unchecked_color" />-->
+    </selector>
+</selector>

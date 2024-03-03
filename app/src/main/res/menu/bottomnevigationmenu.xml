@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_fragment"
+        android:icon="@drawable/homeicon"
+        android:title="Home" />
+    <item
+        android:id="@+id/meta_fragment"
+        android:icon="@drawable/heartbrokeicon"
+        android:title="Meta" />
+    <item
+        android:id="@+id/message_fragment"
+        android:icon="@drawable/messageicon"
+        android:title="Chat" />
+    <item
+        android:id="@+id/profile_fragment"
+        android:icon="@drawable/profileicon"
+        android:title="me" />
+</menu>

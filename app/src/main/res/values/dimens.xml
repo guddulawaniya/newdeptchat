@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="banner_height">50dp</dimen>
+    <dimen name="nativeadheight">320dp</dimen>
+    <dimen name="nativeadheights">220dp</dimen>
+
+</resources>
