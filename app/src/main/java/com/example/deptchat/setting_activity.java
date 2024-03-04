@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -18,18 +19,14 @@ public class setting_activity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
         ImageView backarrow = findViewById(R.id.backarrow);
 
-        MaterialSwitch micswitch = findViewById(R.id.microphone);
-        MaterialSwitch cameraswitch = findViewById(R.id.camera);
+        Switch micswitch = findViewById(R.id.microphone);
+        Switch cameraswitch = findViewById(R.id.camera);
 
 
         micswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    micswitch.setChecked(false);
-                } else {
-                    micswitch.setChecked(true);
-                }
+
                 // Handle switch state change
             }
         });

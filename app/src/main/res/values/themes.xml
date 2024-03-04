@@ -8,8 +8,25 @@
         <item name="colorPrimary">@color/primarycolor</item>
         <item name="colorPrimaryVariant">@color/secoundarycolor</item>
         <item name="colorOnPrimary">#8F002F</item>
+        <item name="colorOnSurface">@color/white</item>
+
+<!--        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>-->
 
     </style>
+
+
+    <style name="Widget.App.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Switch</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Switch" parent="">
+        <item name="colorPrimary">@color/primarycolor</item>
+        <item name="colorSurfaceVariant">@color/white</item>
+        <item name="android:thumb">@drawable/mtrl_switch_thumb</item>
+        <item name="track">@drawable/mtrl_switch_track</item>
+
+    </style>
+
     <style name="TransparentStatusBarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>

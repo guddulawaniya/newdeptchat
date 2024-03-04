@@ -19,6 +19,8 @@ import com.applovin.mediation.ads.MaxAdView;
 import com.applovin.mediation.nativeAds.MaxNativeAdListener;
 import com.applovin.mediation.nativeAds.MaxNativeAdLoader;
 import com.applovin.mediation.nativeAds.MaxNativeAdView;
+import com.applovin.sdk.AppLovinSdk;
+import com.applovin.sdk.AppLovinSdkConfiguration;
 import com.example.deptchat.R;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
@@ -51,6 +53,7 @@ public class bannerad {
     static SharedPreferences sharedPreferences ;
 
 
+
     public bannerad(Context ctx, Activity atx) {
         context = ctx;
         activity=atx;
@@ -59,25 +62,25 @@ public class bannerad {
     }
 
     public static void Native_Ad(final FrameLayout frameLayout ,TemplateView templateView) {
-        Facebook_Native(frameLayout,templateView);
+
         if (!sharedPreferences.getString("fbnative","iuhikuhiukh").equals("STOP")){
 
-
+            Facebook_Native(frameLayout,templateView);
         }
 
     }
     public static void Banner_Ad(final FrameLayout frameLayout) {
-        Facebook_Banner(frameLayout);
+
         if (!sharedPreferences.getString("fbbanner","").equals("STOP")){
 
-
+            Facebook_Banner(frameLayout);
         }
 
     }
 
     public static void Facebook_Native(final FrameLayout frameLayout,TemplateView template) {
 //        final NativeAd nativeAd = new NativeAd(context, sharedPreferences.getString("fbnative","hjgfhjfjg"));
-        final NativeAd nativeAd = new NativeAd(context, "3639430739640698_3639432809640491");
+        final NativeAd nativeAd = new NativeAd(context, "3639430739640698_3644794472437658");
         NativeAdListener nativeAdListener = new NativeAdListener() {
             @Override
             public void onMediaDownloaded(Ad ad) {
@@ -87,9 +90,6 @@ public class bannerad {
             public void onError(Ad ad, AdError adError) {
 
                 Log.e(TAG, "onError: facebooknative: " + adError.getErrorMessage());
-
-
-                Toast.makeText(context, ""+adError.getErrorMessage(), Toast.LENGTH_SHORT).show();
                 Facebook_Mrec(frameLayout,template);
 
             }
@@ -122,7 +122,7 @@ public class bannerad {
         Log.e(TAG, "Adaptive_Banner_mrec: ");
         frameLayout.removeAllViews();
 //        AdView adView = new AdView(context, sharedPreferences.getString("fbmercnative","uyguyguyg"), AdSize.RECTANGLE_HEIGHT_250);
-        AdView adView = new AdView(context, "3639430739640698_3644521002465005", AdSize.RECTANGLE_HEIGHT_250);
+        AdView adView = new AdView(context, "3639430739640698_3644795292437576", AdSize.RECTANGLE_HEIGHT_250);
         com.facebook.ads.AdListener listener = new com.facebook.ads.AdListener() {
             @Override
             public void onError(Ad ad, AdError adError) {
@@ -184,7 +184,7 @@ public class bannerad {
     }
     public static void Facebook_Native_Banner(final FrameLayout frameLayout) {
 //        final com.facebook.ads.NativeBannerAd nativeAd = new com.facebook.ads.NativeBannerAd(context, sharedPreferences.getString("fbbannernative","hgfhgfj"));
-        final com.facebook.ads.NativeBannerAd nativeAd = new com.facebook.ads.NativeBannerAd(context,"3639430739640698_3644492709134501");
+        final com.facebook.ads.NativeBannerAd nativeAd = new com.facebook.ads.NativeBannerAd(context,"3639430739640698_3644794775770961");
         NativeAdListener nativeAdListener = new NativeAdListener() {
             @Override
             public void onMediaDownloaded(Ad ad) {
@@ -247,7 +247,8 @@ public class bannerad {
 
     public static void Facebook_Banner(final FrameLayout frameLayout) {
 //        AdView adView = new AdView(context, sharedPreferences.getString("fbbanner","3940256099942544/6300978111"), AdSize.BANNER_HEIGHT_50);
-        AdView adView = new AdView(context, "3639430739640698_3644518645798574", AdSize.BANNER_HEIGHT_50);
+        AdView adView = new AdView(context, "3639430739640698_3644793789104393", AdSize.BANNER_HEIGHT_50);
+//        AdView adView = new AdView(context, "907413347848857_907416731181852", AdSize.BANNER_HEIGHT_50);
         com.facebook.ads.AdListener listener = new com.facebook.ads.AdListener() {
             @Override
             public void onError(Ad ad, AdError adError) {
@@ -296,6 +297,7 @@ public class bannerad {
                     public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                         super.onAdFailedToLoad(loadAdError);
                         Log.e("AdMob_Native", "Failed to load native ads: " + loadAdError.getMessage());
+                        loadAdMobBanner(frameLayout);
                         // Handle the AdMob native ad load failure
 
                     }
@@ -330,14 +332,9 @@ public class bannerad {
 
 
 
-
-
-
-
-
-
     public static void applovin_banner(FrameLayout frameLayout){
-        appadView = new MaxAdView( bannerid,context);
+//        appadView = new MaxAdView( bannerid,context);
+        appadView = new MaxAdView( "f69813c91b48ac07",context);
         appadView.setListener(new MaxAdViewAdListener() {
             @Override
             public void onAdExpanded(MaxAd maxAd) {
@@ -352,6 +349,7 @@ public class bannerad {
             @Override
             public void onAdLoaded(MaxAd maxAd) {
 
+                Log.d("applovin_banner :","loaded ads");
             }
 
             @Override
@@ -408,7 +406,15 @@ public class bannerad {
     {
         // FrameLayout nativeAdContainer = findViewById( R.id.native_ad_layout );
 
-        nativeAdLoader = new MaxNativeAdLoader( nativeid, context );
+        AppLovinSdk.initializeSdk(context, new AppLovinSdk.SdkInitializationListener() {
+            @Override
+            public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
+                // SDK initialized, you can now load ads
+            }
+        });
+
+//        nativeAdLoader = new MaxNativeAdLoader( nativeid, context );
+        nativeAdLoader = new MaxNativeAdLoader( "f69813c91b48ac07", context );
         nativeAdLoader.setNativeAdListener( new MaxNativeAdListener()
         {
             @Override

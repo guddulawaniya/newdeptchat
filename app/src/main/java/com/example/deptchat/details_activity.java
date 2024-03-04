@@ -38,7 +38,7 @@ public class details_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         BannerAds bannerAds = new BannerAds(this);
 
-        bannerAds.interstitialads(details_activity.this);
+//        bannerAds.interstitialads(details_activity.this);
 
         setContentView(R.layout.activity_details);
         TextView connectnow = findViewById(R.id.connectnow);
@@ -121,8 +121,8 @@ public class details_activity extends AppCompatActivity {
                 editor.putBoolean("checksms", true);
                 editor.commit();
 
-                favoratemodule model = new favoratemodule(nametext, imageurl, video);
-                messageHelper.insertData(model);
+//                favoratemodule model = new favoratemodule(nametext, imageurl, video);
+//                messageHelper.insertData(model);
 
                 Intent intent = new Intent(details_activity.this, chat_activity.class);
                 startActivity(intent);

@@ -113,7 +113,7 @@ public class splash_screen extends AppCompatActivity {
                                             + "\n" + ads.getBannerTop()
                                             + "\n" + ads.getBannerTopAdNetwork()
                                             + "\n" + ads.getBannerBottom()
-                                            + "\n" + ads.getBannerBottomAdNetwork()
+                                            + "unit key  \n" + ads.getBannerBottomAdNetwork()
                                             + "\n" + ads.getInterstitial()
                                             + "\n" + ads.getInterstitalAdNetwork()
                                             + "\n" + ads.getNativeAd()

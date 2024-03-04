@@ -2,7 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/tools"
     android:background="@color/black">
+
+    <RelativeLayout
+        android:id="@+id/native_ad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/nativead"
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/nativeadheight"
+            android:layout_marginBottom="2dp"
+            android:backgroundTint="@color/primarycolor">
+
+        </FrameLayout>
+
+        <com.google.android.ads.nativetemplates.TemplateView
+            android:id="@+id/my_template"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:visibility="gone"
+            app:gnt_template_type="@layout/gnt_small_template_view" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,15 +41,26 @@
         android:gravity="center"
         android:layout_height="match_parent">
 
-    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/bannerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
-    </com.google.android.gms.ads.AdView>
+        <RelativeLayout
+            android:id="@+id/ad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="1dp"
+            ads:layout_constraintBottom_toBottomOf="parent"
+            ads:layout_constraintEnd_toEndOf="parent"
+            ads:layout_constraintHorizontal_bias="0.5"
+            ads:layout_constraintStart_toStartOf="parent">
+
+            <FrameLayout
+                android:id="@+id/bannerad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:backgroundTint="@color/primarycolor" />
+
+        </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
