@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:210819315472:android:b15ae7546cb88ddf705795",
         "android_client_info": {
-          "package_name": "com.example.deptchat"
+          "package_name": "com.deptchat.livevideocallapp"
         }
       },
       "oauth_client": [],
