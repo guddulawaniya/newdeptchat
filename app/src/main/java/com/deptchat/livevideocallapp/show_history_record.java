@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deptchat.livevideocallapp.Adapters.favoratemodule;
 import com.deptchat.livevideocallapp.Adapters.historyshowAdapter;
+import com.deptchat.livevideocallapp.Ads.bannerad;
+import com.deptchat.livevideocallapp.Ads.intersital;
 import com.deptchat.livevideocallapp.sqllite.ConnectCallTB;
 import com.deptchat.livevideocallapp.sqllite.favorateHalper;
 
@@ -37,6 +39,13 @@ public class show_history_record extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         nodatafound = findViewById(R.id.nodatafound);
         list = new ArrayList<>();
+        new intersital(this).Show_Ads();
+        try {
+            new bannerad(this,this).Native_Ad(findViewById(R.id.nativead),findViewById(R.id.my_template));
+            new bannerad(this,this).Banner_Ad(findViewById(R.id.bannerad));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         TextView title = findViewById(R.id.titletext);
         title.setText(intent.getStringExtra("title"));

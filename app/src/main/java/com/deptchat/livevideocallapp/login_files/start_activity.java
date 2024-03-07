@@ -1,13 +1,16 @@
 package com.deptchat.livevideocallapp.login_files;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +18,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.deptchat.livevideocallapp.Ads.bannerad;
+import com.deptchat.livevideocallapp.Ads.intersital;
 import com.deptchat.livevideocallapp.MainActivity;
 
 import com.deptchat.livevideocallapp.R;
@@ -45,8 +49,19 @@ public class start_activity extends AppCompatActivity {
             new bannerad(this,this).Native_Ad(findViewById(R.id.nativead),findViewById(R.id.my_template));
             new bannerad(this,this).Banner_Ad(findViewById(R.id.bannerad));
         } catch (Exception e) {
-            throw new RuntimeException(e);
+
         }
+
+        SharedPreferences sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+        //   sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+        //  String channel = (shared.getString(keyValue, ""));
+        String url = sharedPreferences.getString("url", "https://www.google.com/");
+
+//        if (getIntent().getStringExtra("backads").equals("1")){
+//            Log.d("onError1 ;intent","hello");
+//
+//        }
+        new intersital(this).Show_Ads();
 
 
 

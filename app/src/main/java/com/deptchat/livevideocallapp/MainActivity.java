@@ -1,6 +1,7 @@
 package com.deptchat.livevideocallapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.deptchat.livevideocallapp.Ads.intersital;
 import com.deptchat.livevideocallapp.Fragments.Home_fragment;
 import com.deptchat.livevideocallapp.Fragments.Profile_Fragment;
 import com.deptchat.livevideocallapp.Fragments.message_fragment;
@@ -30,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
 //
 //        bannerAds.interstitialads(MainActivity.this);
         replaceFragment(new Home_fragment());
+//        if (getIntent().getStringExtra("backads").equals("1")){
+//            Log.d("onError1 ;intent","hello");
+//
+//        }
+        new intersital(this).Show_Ads();
 
         bottomNavigationView.setOnItemSelectedListener(this::onNavigationItemSelected);
     }

@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.deptchat.livevideocallapp.Ads.bannerad;
+import com.deptchat.livevideocallapp.Ads.intersital;
 import com.deptchat.livevideocallapp.login_files.start_activity;
 
 public class setting_activity extends AppCompatActivity {
@@ -36,6 +38,15 @@ public class setting_activity extends AppCompatActivity {
         TextView logout = findViewById(R.id.logout);
         TextView delete = findViewById(R.id.delete);
         TextView termscondtion  = findViewById(R.id.termcondition);
+
+        try {
+            new bannerad(this,this).Native_Ad(findViewById(R.id.nativead),findViewById(R.id.my_template));
+            new bannerad(this,this).Banner_Ad(findViewById(R.id.bannerad));
+        } catch (Exception e) {
+
+        }
+
+        new intersital(this).Show_Ads();
 
         micswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

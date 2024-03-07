@@ -36,6 +36,7 @@
         <!-- Add more UPI app packages as needed -->
     </queries>
     <application
+        android:name="com.deptchat.livevideocallapp.Ads.MyApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:label="@string/app_name"

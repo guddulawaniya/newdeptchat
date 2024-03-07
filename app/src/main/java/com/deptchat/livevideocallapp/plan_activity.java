@@ -18,6 +18,7 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.deptchat.livevideocallapp.Ads.bannerad;
+import com.deptchat.livevideocallapp.Ads.intersital;
 
 import dev.shreyaspatil.easyupipayment.EasyUpiPayment;
 import dev.shreyaspatil.easyupipayment.exception.AppNotFoundException;
@@ -61,6 +62,7 @@ public class plan_activity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
+        new intersital(this).Show_Ads();
 
         ImageView closebutton = findViewById(R.id.closebutton);
         CardView card1 = findViewById(R.id.card1);

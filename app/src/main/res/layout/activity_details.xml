@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
     tools:context=".details_activity">
 
@@ -292,6 +293,8 @@
                 android:textColor="@color/white"
                 android:textSize="13dp" />
 
+
+
         </LinearLayout>
 
     </LinearLayout>
@@ -305,8 +308,9 @@
         android:layout_marginBottom="8dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/ad"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.cardview.widget.CardView
@@ -323,11 +327,11 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_centerInParent="true"
-                android:textOff=""
-                android:textOn=""
                 android:layout_margin="9dp"
                 android:background="@drawable/favorite"
-                android:text="" />
+                android:text=""
+                android:textOff=""
+                android:textOn="" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -370,6 +374,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/ad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="1dp"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintHorizontal_bias="0.5"
+        ads:layout_constraintStart_toStartOf="parent">
+
+        <FrameLayout
+            android:id="@+id/bannerad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:backgroundTint="@color/primarycolor" />
+
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

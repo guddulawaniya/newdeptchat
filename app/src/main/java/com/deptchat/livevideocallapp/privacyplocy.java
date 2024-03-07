@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.deptchat.livevideocallapp.Ads.BannerAds;
 import com.deptchat.livevideocallapp.Ads.bannerad;
+import com.deptchat.livevideocallapp.Ads.intersital;
 
 public class privacyplocy extends AppCompatActivity {
     FrameLayout bannerframlayout, nativeframlaout2;
@@ -19,6 +20,7 @@ public class privacyplocy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_privacyplocy);
 //        bannerAds = new BannerAds(this);
+        new intersital(this).Show_Ads();
 
         try {
             new bannerad(this,this).Native_Ad(findViewById(R.id.nativead),findViewById(R.id.my_template));

@@ -14,6 +14,8 @@ import androidx.cardview.widget.CardView;
 
 import com.deptchat.livevideocallapp.Adapters.favoratemodule;
 import com.deptchat.livevideocallapp.Ads.BannerAds;
+import com.deptchat.livevideocallapp.Ads.bannerad;
+import com.deptchat.livevideocallapp.Ads.intersital;
 import com.deptchat.livevideocallapp.sqllite.ConnectCallTB;
 import com.deptchat.livevideocallapp.sqllite.MessageHelper;
 import com.deptchat.livevideocallapp.sqllite.favorateHalper;
@@ -39,6 +41,11 @@ public class details_activity extends AppCompatActivity {
         BannerAds bannerAds = new BannerAds(this);
 
 //        bannerAds.interstitialads(details_activity.this);
+        try {
+            new bannerad(this,this).Banner_Ad(findViewById(R.id.bannerad));
+        } catch (Exception e) {
+
+        }
 
         setContentView(R.layout.activity_details);
         TextView connectnow = findViewById(R.id.connectnow);
@@ -49,6 +56,7 @@ public class details_activity extends AppCompatActivity {
         TextView permincharge = findViewById(R.id.permincharge);
         toggleFavorite.setTextOff("");
         toggleFavorite.setTextOn("");
+        new intersital(this).Show_Ads();
 
         Helper = new favorateHalper(details_activity.this);
 //        messageHelper = new MessageHelper(details_activity.this);
@@ -148,6 +156,7 @@ public class details_activity extends AppCompatActivity {
                     SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
                     editor.putBoolean("callcheck", true);
                     editor.commit();
+                    new intersital(details_activity.this).Show_Ads();
 
                     favoratemodule model = new favoratemodule(nametext, imageurl, video);
                     callHelper.insertData(model);

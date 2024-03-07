@@ -1,5 +1,6 @@
 package com.deptchat.livevideocallapp.login_files;
 
+import android.app.Application;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,9 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.deptchat.livevideocallapp.Ads.ApiInterface;
 import com.deptchat.livevideocallapp.Ads.ApiWebServices;
+import com.deptchat.livevideocallapp.Ads.MyApplication;
 import com.deptchat.livevideocallapp.Ads.SammanNidhiAdsModel;
 
 import com.deptchat.livevideocallapp.R;
+import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.FirebaseApp;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -67,30 +71,14 @@ public class splash_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        MobileAds.initialize(this);
+        Application application = getApplication();
+        ((MyApplication) application).loadAd(this);
+        FirebaseApp.initializeApp(this);
 
         fetchAds();
 
         progressBar = findViewById(R.id.progressBar2);
-        SharedPreferences editor = getSharedPreferences("login", MODE_PRIVATE);
-        int clientid = editor.getInt("clientid", 0);
-
-//
-//        if (clientid != 0) {
-//            startActivity(new Intent(splash_screen.this, MainActivity.class));
-//            finish();
-//
-//        } else {
-//
-
-//            new Handler().postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    startActivity(new Intent(splash_screen.this, start_activity.class));
-//                    finish();
-//                }
-//            }, 2000);
-
-//        }
 
     }
 

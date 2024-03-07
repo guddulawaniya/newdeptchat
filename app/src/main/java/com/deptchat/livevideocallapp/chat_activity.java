@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -20,6 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.deptchat.livevideocallapp.Adapters.ChatAdapter;
 import com.deptchat.livevideocallapp.Adapters.MessagesModule;
 import com.deptchat.livevideocallapp.Adapters.favoratemodule;
+import com.deptchat.livevideocallapp.Ads.Interfb;
+import com.deptchat.livevideocallapp.Ads.intersital;
 import com.deptchat.livevideocallapp.sqllite.chatHalper;
 
 import java.text.DecimalFormat;
@@ -41,6 +44,10 @@ public class chat_activity extends AppCompatActivity {
     chatHalper messageHelper;
     ArrayList<MessagesModule> messagelist;
     LinearLayout chatlocklinearlayout,chatlinear;
+    SharedPreferences sharedPreferences;
+    private int activityOpenCount = 0;
+    String timer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,11 +62,25 @@ public class chat_activity extends AppCompatActivity {
         String name = preferences.getString("name",null);
         String video = preferences.getString("video",null);
         int avaiblecoin = preferences.getInt("coins",0);
+        sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+
+
 
         messageHelper = new chatHalper(this);
 
         favoratemodule model = new favoratemodule(name, imagetext, video);
         messageHelper.insertdata(model);
+        new intersital(this).Show_Ads();
+        if (getIntent().hasExtra("isfromstart")){
+
+        }
+        else if(sharedPreferences.getString("adtype", "1").equals("1")){
+            new Interfb(this).Show_Ads();
+        }else if(sharedPreferences.getString("adtype", "1").equals("2")){
+            if (activityOpenCount % 2 != 0) {
+                new Interfb(this).Show_Ads();
+            }
+        }
 
 
         recyclerView = findViewById(R.id.ChatRecyclerView);
