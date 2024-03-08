@@ -29,11 +29,9 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private int recId;
 
-    public ChatAdapter(List<MessagesModule> messagesList, Context context, int recId) {
+    public ChatAdapter(List<MessagesModule> messagesList, Context context) {
         this.messagesList = messagesList;
         this.context = context;
-        this.recId = recId;
-
     }
 
     @NonNull
@@ -103,7 +101,7 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             String imageUrl = preferences.getString("image", "");
             ImageViewHolder imageHolder = (ImageViewHolder) holder;
             Picasso.get().load(imageUrl).into(imageHolder.profileImage);
-            Picasso.get().load(messageModule.getMessageimage()).into(imageHolder.imageMessageProfile);
+            Picasso.get().load(messageModule.getMessage()).into(imageHolder.imageMessageProfile);
 
         }
         else if (holder instanceof SenderViewHolder) {
@@ -119,7 +117,8 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        return recId;
+//        return recId;
+        return messagesList.get(position).getId();
     }
 
     @Override
@@ -150,13 +149,13 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
-        ImageView profileImage;
-        CircleImageView imageMessageProfile;
+        CircleImageView profileImage;
+        ImageView imageMessageProfile;
 
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
-            profileImage = itemView.findViewById(R.id.messageimage);
-            imageMessageProfile = itemView.findViewById(R.id.image_message_profile);
+            profileImage = itemView.findViewById(R.id.image_message_profile);
+            imageMessageProfile = itemView.findViewById(R.id.messageimage);
         }
     }
 }

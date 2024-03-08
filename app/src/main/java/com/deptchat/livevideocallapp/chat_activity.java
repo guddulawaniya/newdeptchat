@@ -88,10 +88,8 @@ public class chat_activity extends AppCompatActivity {
         recyclerView = findViewById(R.id.ChatRecyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        adapter = new ChatAdapter(messagelist,this,3);
+        adapter = new ChatAdapter(messagelist,chat_activity.this);
         recyclerView.setAdapter(adapter);
-
 
 
         back_arrow = findViewById(R.id.backarrow);
@@ -172,6 +170,7 @@ public class chat_activity extends AppCompatActivity {
         sendsms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 sendMessage();
 
             }
@@ -206,26 +205,29 @@ public class chat_activity extends AppCompatActivity {
     }
 
     private void sendMessage() {
+
         String message = textmessage.getText().toString().trim();
         if (!message.isEmpty()) {
 
-            messagelist.add(new MessagesModule(message));
+            messagelist.add(new MessagesModule(message,3));
             adapter.notifyDataSetChanged();
             textmessage.setText("");
-//            recievermsg();
-//            imagereciever();
+            recievermsg();
+            imagereciever();
         }
     }
 
 
     void recievermsg()
     {
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
-                messagelist.add(new MessagesModule("hello kaise ho"));
+                messagelist.add(new MessagesModule("hello kaise ho",1));
                 adapter.notifyDataSetChanged();
+
 
             }
         },2000);
@@ -235,7 +237,8 @@ public class chat_activity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                messagelist.add(new MessagesModule("hello kaise ho"));
+                String imageurl = "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+                messagelist.add(new MessagesModule(imageurl,2));
                 adapter.notifyDataSetChanged();
 
             }

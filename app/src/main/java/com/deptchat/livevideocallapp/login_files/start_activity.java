@@ -38,7 +38,7 @@ public class start_activity extends AppCompatActivity {
         int coin = Integer.parseInt(permincoin);
         SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
         editor.putInt("perminchage", coin);
-        editor.putInt("coins", 1000);
+        editor.putInt("coins", 0);
         editor.commit();
 
 

@@ -10,10 +10,6 @@ public class MessagesModule {
         this.id = id;
     }
 
-    public MessagesModule(int id, int messageimage) {
-        this.id = id;
-        this.messageimage = messageimage;
-    }
 
     public MessagesModule(String message) {
         this.message = message;
