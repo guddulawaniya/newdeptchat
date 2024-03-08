@@ -1,6 +1,7 @@
 package com.deptchat.livevideocallapp.Ads;
 
 
+import com.deptchat.livevideocallapp.Adapters.Chatdatamodule;
 import com.deptchat.livevideocallapp.Adapters.Slidermodule;
 import com.deptchat.livevideocallapp.Adapters.YourDataModel;
 
@@ -23,6 +24,9 @@ public interface ApiInterface {
 
     @POST("fetch_others_api.php")
     Call<Slidermodule> getAllOthers();
+
+    @POST("get_chat_data.php")
+    Call<Chatdatamodule> getchatMessage();
     @POST("fetch_intro_sentences.php")
     Call<Slidermodule> getIntroSentences();
 

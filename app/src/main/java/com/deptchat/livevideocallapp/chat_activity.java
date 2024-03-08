@@ -8,10 +8,12 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -20,17 +22,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.deptchat.livevideocallapp.Adapters.ChatAdapter;
+import com.deptchat.livevideocallapp.Adapters.Chatdatamodule;
 import com.deptchat.livevideocallapp.Adapters.MessagesModule;
+import com.deptchat.livevideocallapp.Adapters.SliderAdapter;
+import com.deptchat.livevideocallapp.Adapters.Slidermodule;
 import com.deptchat.livevideocallapp.Adapters.favoratemodule;
+import com.deptchat.livevideocallapp.Ads.ApiWebServices;
 import com.deptchat.livevideocallapp.Ads.Interfb;
 import com.deptchat.livevideocallapp.Ads.intersital;
 import com.deptchat.livevideocallapp.sqllite.chatHalper;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class chat_activity extends AppCompatActivity {
@@ -204,6 +215,37 @@ public class chat_activity extends AppCompatActivity {
 
     }
 
+    private void fetchchatdata() {
+
+        Call<Chatdatamodule> call = ApiWebServices.getApiInterface().getchatMessage();
+        call.enqueue(new Callback<Chatdatamodule>() {
+            @Override
+            public void onResponse(Call<Chatdatamodule> call, Response<Chatdatamodule> response) {
+                Chatdatamodule chatdatamodule = response.body();
+
+                messagelist.add(new MessagesModule(chatdatamodule.getText(),1));
+                adapter.notifyDataSetChanged();
+
+                if (chatdatamodule.getImage()!=null)
+                {
+
+
+                    messagelist.add(new MessagesModule(chatdatamodule.getImage(),2));
+                    adapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Chatdatamodule> call, Throwable t) {
+                Toast.makeText(chat_activity.this, ""+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+    }
+
     private void sendMessage() {
 
         String message = textmessage.getText().toString().trim();
@@ -212,8 +254,7 @@ public class chat_activity extends AppCompatActivity {
             messagelist.add(new MessagesModule(message,3));
             adapter.notifyDataSetChanged();
             textmessage.setText("");
-            recievermsg();
-            imagereciever();
+            fetchchatdata();
         }
     }
 
