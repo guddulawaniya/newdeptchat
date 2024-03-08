@@ -27,16 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
-//        BannerAds bannerAds =new BannerAds(this);
-////        bannerAds.BnnersAdview(findViewById(R.id.adView));
-//
-//        bannerAds.interstitialads(MainActivity.this);
         replaceFragment(new Home_fragment());
-//        if (getIntent().getStringExtra("backads").equals("1")){
-//            Log.d("onError1 ;intent","hello");
-//
-//        }
-        new intersital(this).Show_Ads();
 
         bottomNavigationView.setOnItemSelectedListener(this::onNavigationItemSelected);
     }

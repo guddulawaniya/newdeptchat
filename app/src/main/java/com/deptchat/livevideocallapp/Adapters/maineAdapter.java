@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,12 +45,16 @@ public class maineAdapter extends RecyclerView.Adapter<maineAdapter.viewholder> 
         YourDataModel data = list.get(position);
 
         String[] parts = data.getText().split("-");
+        int[] numbers = {18,19,20,21,22,23,24,25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35};
+        Random random = new Random();
+        int randomIndex = random.nextInt(numbers.length);
+        int randomAge = numbers[randomIndex];
 
 
         if (parts.length == 2) {
             String name = parts[0];
             String location = parts[1];
-            holder.age.setText(new DecimalFormat("18").format(new Random().nextInt(35)));
+            holder.age.setText(""+randomAge);
             holder.name.setText(name);
             holder.location.setText(location);
         } else {
@@ -62,12 +67,12 @@ public class maineAdapter extends RecyclerView.Adapter<maineAdapter.viewholder> 
         holder.videocallbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                SharedPreferences preferences = context.getSharedPreferences("login", context.MODE_PRIVATE);
-                int permincharge = preferences.getInt("perminchage", 0);
-                int availablecoin = preferences.getInt("coins", 0);
-
-                if (availablecoin >= permincharge && availablecoin != 0) {
+//
+//                SharedPreferences preferences = context.getSharedPreferences("login", context.MODE_PRIVATE);
+//                int permincharge = preferences.getInt("perminchage", 0);
+//                int availablecoin = preferences.getInt("coins", 0);
+//
+//                if (availablecoin >= permincharge && availablecoin != 0) {
                     SharedPreferences.Editor editor = context.getSharedPreferences("login", Context.MODE_PRIVATE).edit();
                     editor.putString("video", data.getVideo());
                     editor.putString("location", holder.location.getText().toString());
@@ -76,10 +81,10 @@ public class maineAdapter extends RecyclerView.Adapter<maineAdapter.viewholder> 
                     editor.commit();
                     Intent intent = new Intent(context, ConnectionVideoActivity.class);
                     context.startActivity(intent);
-                } else {
-                    Intent intent = new Intent(context, plan_activity.class);
-                    context.startActivity(intent);
-                }
+//                } else {
+//                    Intent intent = new Intent(context, plan_activity.class);
+//                    context.startActivity(intent);
+//                }
 
             }
         });
@@ -93,8 +98,11 @@ public class maineAdapter extends RecyclerView.Adapter<maineAdapter.viewholder> 
                 editor.putString("name", holder.name.getText().toString());
                 editor.putString("age", holder.age.getText().toString());
                 editor.putString("image", data.getImg());
+                editor.putInt("id", data.getId());
                 editor.commit();
                 Intent intent = new Intent(context, details_activity.class);
+//                intent.putExtra("id",data.getId());
+
                 context.startActivity(intent);
             }
         });

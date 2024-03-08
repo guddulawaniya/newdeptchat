@@ -2,17 +2,21 @@ package com.deptchat.livevideocallapp.Adapters;
 
 public class MessagesModule {
 
-    String message;
-    int uId;
-    String image;
+ String message ;
+ int id,messageimage;
 
-    public MessagesModule(String message, int uId) {
+    public MessagesModule(String message, int id) {
         this.message = message;
-        this.uId = uId;
+        this.id = id;
     }
 
-    public MessagesModule(String image) {
-        this.image = image;
+    public MessagesModule(int id, int messageimage) {
+        this.id = id;
+        this.messageimage = messageimage;
+    }
+
+    public MessagesModule(String message) {
+        this.message = message;
     }
 
     public String getMessage() {
@@ -23,19 +27,19 @@ public class MessagesModule {
         this.message = message;
     }
 
-    public int getuId() {
-        return uId;
+    public int getId() {
+        return id;
     }
 
-    public void setuId(int uId) {
-        this.uId = uId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getImage() {
-        return image;
+    public int getMessageimage() {
+        return messageimage;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setMessageimage(int messageimage) {
+        this.messageimage = messageimage;
     }
 }

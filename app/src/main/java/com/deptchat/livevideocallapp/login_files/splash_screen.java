@@ -154,6 +154,7 @@ public class splash_screen extends AppCompatActivity {
                             myEdit.putString("Intersitialfb", ads.getInterstitial());
                             myEdit.putString("Intersitialadmob", ads.getInterstitalAdNetwork());
 
+
                             //Toast.makeText(SplashActivity.this, ads.getBannerBottomAdNetwork()+" --- "+ads.getNativeAdNetwork(), Toast.LENGTH_SHORT).show();
 
                             Log.d("vurl",url+"-"+gameurl);

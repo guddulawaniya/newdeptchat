@@ -120,7 +120,8 @@ public class setting_activity extends AppCompatActivity {
         termscondtion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(setting_activity.this, privacy_activity.class);
+                Intent intent = new Intent(setting_activity.this, privacyplocy.class);
+                intent.putExtra("url","https://appkiprivacypolicy.blogspot.com/2024/03/deptchat-terms-and-condtions.html");
                 startActivity(intent);
 
             }

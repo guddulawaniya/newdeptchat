@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ImageView;
@@ -46,6 +47,7 @@ public class chat_activity extends AppCompatActivity {
     LinearLayout chatlocklinearlayout,chatlinear;
     SharedPreferences sharedPreferences;
     private int activityOpenCount = 0;
+    ChatAdapter adapter;
     String timer;
 
 
@@ -56,7 +58,7 @@ public class chat_activity extends AppCompatActivity {
 
         messagelist = new ArrayList<>();
 
-       String age = new DecimalFormat("18").format(new Random().nextInt(36));
+//       String age = new DecimalFormat("18").format(new Random().nextInt(36));
         SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
         String imagetext = preferences.getString("image",null);
         String name = preferences.getString("name",null);
@@ -66,13 +68,14 @@ public class chat_activity extends AppCompatActivity {
 
 
 
-        messageHelper = new chatHalper(this);
+//        messageHelper = new chatHalper(this);
+//
+//        favoratemodule model = new favoratemodule(name, imagetext, video);
+//        messageHelper.insertdata(model);
 
-        favoratemodule model = new favoratemodule(name, imagetext, video);
-        messageHelper.insertdata(model);
-        new intersital(this).Show_Ads();
+
         if (getIntent().hasExtra("isfromstart")){
-
+            new intersital(this).Show_Ads();
         }
         else if(sharedPreferences.getString("adtype", "1").equals("1")){
             new Interfb(this).Show_Ads();
@@ -82,8 +85,15 @@ public class chat_activity extends AppCompatActivity {
             }
         }
 
-
         recyclerView = findViewById(R.id.ChatRecyclerView);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter = new ChatAdapter(messagelist,this,3);
+        recyclerView.setAdapter(adapter);
+
+
+
         back_arrow = findViewById(R.id.backarrow);
         userName = findViewById(R.id.userName);
         chatmenu = findViewById(R.id.chatmenu);
@@ -118,20 +128,6 @@ public class chat_activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                messagelist.add(new MessagesModule(imagetext));
-//                recyclerView.setLayoutManager(new LinearLayoutManager(chat_activity.this));
-//                ChatAdapter chatAdapter = new ChatAdapter(messagelist,chat_activity.this,3);
-//                recyclerView.setAdapter(chatAdapter);
-//            }
-//        },5000);
-
-
 
 
         chatmenu.setOnClickListener(new View.OnClickListener() {
@@ -170,25 +166,14 @@ public class chat_activity extends AppCompatActivity {
             }
         });
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setAdapter();
+
+
+
         sendsms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!textmessage.getText().toString().isEmpty())
-                {
-                    MessagesModule module = new MessagesModule(textmessage.getText().toString(),1);
+                sendMessage();
 
-
-//                    chathelper.insertdata(module);
-
-//                    messagelist.add();
-//                    textmessage.setText("");
-
-                    recyclerView.setLayoutManager(new LinearLayoutManager(chat_activity.this));
-                    ChatAdapter chatAdapter = new ChatAdapter(messagelist,chat_activity.this,1);
-                    recyclerView.setAdapter(chatAdapter);
-                }
             }
         });
 
@@ -202,12 +187,6 @@ public class chat_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SharedPreferences preferences = getSharedPreferences("login", MODE_PRIVATE);
-                int permincharge = preferences.getInt("perminchage", 0);
-                int availablecoin = preferences.getInt("coins", 0);
-
-                if (availablecoin >= permincharge && availablecoin != 0) {
-
                     SharedPreferences.Editor editor = getSharedPreferences("login", Context.MODE_PRIVATE).edit();
                     editor.putString("image", imagetext);
                     editor.putString("name", name);
@@ -219,16 +198,48 @@ public class chat_activity extends AppCompatActivity {
                     intent.putExtra("video", video);
                     startActivity(intent);
 
-                }
-                else
-                {
-                    Intent intent = new Intent(chat_activity.this, plan_activity.class);
-                    startActivity(intent);
-                }
             }
         });
 
         userName.setText(name);
 
+    }
+
+    private void sendMessage() {
+        String message = textmessage.getText().toString().trim();
+        if (!message.isEmpty()) {
+
+            messagelist.add(new MessagesModule(message));
+            adapter.notifyDataSetChanged();
+            textmessage.setText("");
+//            recievermsg();
+//            imagereciever();
+        }
+    }
+
+
+    void recievermsg()
+    {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                messagelist.add(new MessagesModule("hello kaise ho"));
+                adapter.notifyDataSetChanged();
+
+            }
+        },2000);
+    }
+    void imagereciever()
+    {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                messagelist.add(new MessagesModule("hello kaise ho"));
+                adapter.notifyDataSetChanged();
+
+            }
+
+        },3000);
     }
 }

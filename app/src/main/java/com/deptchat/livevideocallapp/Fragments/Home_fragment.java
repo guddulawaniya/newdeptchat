@@ -9,16 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.deptchat.livevideocallapp.Adapters.Datum;
 import com.deptchat.livevideocallapp.Adapters.SliderAdapter;
-import com.deptchat.livevideocallapp.Adapters.SliderData;
+import com.deptchat.livevideocallapp.Adapters.Slidermodule;
 import com.deptchat.livevideocallapp.Adapters.YourDataModel;
 import com.deptchat.livevideocallapp.Adapters.maineAdapter;
-import com.deptchat.livevideocallapp.Ads.ApiService;
+import com.deptchat.livevideocallapp.Ads.ApiInterface;
+import com.deptchat.livevideocallapp.Ads.ApiWebServices;
 import com.deptchat.livevideocallapp.Ads.bannerad;
 import com.deptchat.livevideocallapp.R;
 import com.google.android.gms.ads.AdView;
@@ -32,120 +35,103 @@ import java.util.Random;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Home_fragment extends Fragment {
     String img, video, name, city;
     RecyclerView recyclerView;
     private ProgressBar progressDialog;
-    int permincoin = 100;
-    AdView mAdView;
-    String url1 = "https://c4.wallpaperflare.com/wallpaper/426/215/771/girl-landscape-view-wallpaper-preview.jpg";
-    String url2 = "https://c4.wallpaperflare.com/wallpaper/337/789/191/girl-landscape-the-city-the-wind-wallpaper-preview.jpg";
-    String url3 = "https://w0.peakpx.com/wallpaper/808/709/HD-wallpaper-beatrice-in-pink-swimsuit-posture-sexy-sea-beach-breasts-beatrice-chirita-girl-landscape.jpg";
+    String permincoin;
+    List<Datum> sliderlist;
+    SliderView sliderView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_fragment, container, false);
         recyclerView = view.findViewById(R.id.recyclerview);
+        sliderlist = new ArrayList<>();
+        sliderView = view.findViewById(R.id.slider);
+        sliderfetchData();
 
-//        BannerAds bannerAds = new BannerAds(getContext());
+
+        sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
+
+        sliderView.setScrollTimeInSec(3);
 
 
-        ArrayList<SliderData> sliderDataArrayList = new ArrayList<>();
-//        UnityAds.initialize(getContext(), "your_game_id", (IUnityAdsInitializationListener) new UnityAdsListener());
+        sliderView.setAutoCycle(true);
 
-        // initializing the slider view.
-        SliderView sliderView = view.findViewById(R.id.slider);
+        sliderView.startAutoCycle();
 
 
         try {
             new bannerad(getContext(), getActivity()).Banner_Ad(view.findViewById(R.id.bannerad));
         } catch (Exception e) {
-            throw new RuntimeException(e);
+
         }
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login", MODE_PRIVATE);
 
-
-        // adding the urls inside array list
-        sliderDataArrayList.add(new SliderData(url1));
-        sliderDataArrayList.add(new SliderData(url2));
-        sliderDataArrayList.add(new SliderData(url3));
-
-        // passing this array list inside our adapter class.
-        SliderAdapter adapter = new SliderAdapter(getContext(), sliderDataArrayList);
-
-        // below method is used to set auto cycle direction in left to
-        // right direction you can change according to requirement.
-        sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
-
-        // below method is used to
-        // setadapter to sliderview.
-        sliderView.setSliderAdapter(adapter);
-
-        // below method is use to set
-        // scroll time in seconds.
-        sliderView.setScrollTimeInSec(3);
-
-        // to set it scrollable automatically
-        // we use below method.
-        sliderView.setAutoCycle(true);
-
-        // to start autocycle below method is used.
-        sliderView.startAutoCycle();
-
-
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                onDestroy();
-//            }
-//        }, 6000);
-//
-//
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                bannerAds.interstitialads(getActivity());
-//            }
-//        }, 40000);
-
-
-//        bannerAds.interstitialads(getActivity());
         progressDialog = view.findViewById(R.id.progressBar);
+        permincoin = sharedPreferences.getString("prices", "10").split("#")[18];
 
-        SharedPreferences.Editor editor = getActivity().getSharedPreferences("login", MODE_PRIVATE).edit();
-        editor.putInt("perminchage", permincoin);
-        editor.putInt("coins", 1000);
-        editor.commit();
+        int coin = Integer.parseInt(permincoin);
+
 
 
         fetchData();
         return view;
-        // Inflate the layout for this fragment
     }
 
-//    @Override
-//    public void onDestroy() {
-//        // Destroy the AdView when the activity is destroyed to release resources
-//        if (mAdView != null) {
-//            mAdView.destroy();
-//        }
-//        super.onDestroy();
-//    }
+    private void sliderfetchData() {
+
+        Call<Slidermodule> call = ApiWebServices.getApiInterface().getAllOthers();
+        call.enqueue(new Callback<Slidermodule>() {
+            @Override
+            public void onResponse(Call<Slidermodule> call, Response<Slidermodule> response) {
+                if (response.isSuccessful()) {
+                    Slidermodule sliderModule = response.body();
+
+                    if (sliderModule != null && sliderModule.getData() != null && !sliderModule.getData().isEmpty()) {
+                        sliderlist = sliderModule.getData();
+
+//                        // Access the image from the first item in the dataList
+//                        String imageUrl = dataList.get(0).getImage();
+//                        sliderlist.add(imageUrl);
+                        SliderAdapter adapter = new SliderAdapter(getActivity(), sliderlist);
+                        sliderView.setSliderAdapter(adapter);
+
+                        // Shuffle the list to display items in random order
+                        Collections.shuffle(sliderlist);
+
+                        // Update your UI or perform any other actions here
+
+                        progressDialog.setVisibility(View.GONE);
+                    } else {
+                        // Handle empty response or null list
+                    }
+                } else {
+                    // Handle error
+                    Log.e("API Error", "Error: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Slidermodule> call, Throwable t) {
+                // Handle failure
+                progressDialog.setVisibility(View.GONE);
+                Log.e("fetchdata", t.getMessage());
+                Toast.makeText(getContext(), "" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+    }
 
     private void fetchData() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://gedgetsworld.in/PM_Kisan_Yojana/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        ApiService apiService = retrofit.create(ApiService.class);
 
         // Make the API call
-        Call<List<YourDataModel>> call = apiService.getData();
+        Call<List<YourDataModel>> call = ApiWebServices.getApiInterface().getData();
         call.enqueue(new Callback<List<YourDataModel>>() {
             @Override
             public void onResponse(Call<List<YourDataModel>> call, Response<List<YourDataModel>> response) {

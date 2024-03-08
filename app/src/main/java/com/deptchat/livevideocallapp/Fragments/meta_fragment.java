@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.deptchat.livevideocallapp.Adapters.YourDataModel;
-import com.deptchat.livevideocallapp.Ads.ApiService;
+import com.deptchat.livevideocallapp.Ads.ApiInterface;
 import com.deptchat.livevideocallapp.Ads.bannerad;
 import com.deptchat.livevideocallapp.ConnectionVideoActivity;
 
@@ -59,6 +59,7 @@ public class meta_fragment extends Fragment {
          LottieAnimationView = view.findViewById(R.id.scanningview);
 
         handler = new Handler();
+
 
         try {
 //            new bannerad(getContext(),getActivity()).Native_Ad(view.findViewById(R.id.nativead),findViewById(R.id.my_template));
@@ -152,7 +153,7 @@ public class meta_fragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        ApiService apiService = retrofit.create(ApiService.class);
+        ApiInterface apiService = retrofit.create(ApiInterface.class);
 
         // Make the API call
         Call<List<YourDataModel>> call = apiService.getData();

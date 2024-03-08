@@ -27,7 +27,7 @@ public class favorateHalper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String createTableQuery = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_ID + " INTEGER, " +
                 COLUMN_NAME + " TEXT," +
                 COLUMN_IMAGE_URL + " TEXT, " +
                 COLUMN_VIDEO + " TEXT);";
@@ -42,6 +42,16 @@ public class favorateHalper extends SQLiteOpenHelper {
         db.execSQL(query);
         onCreate(db);
 
+    }
+
+    public void deleteDataById(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Use the DELETE statement with a WHERE clause to specify the ID
+        String deleteQuery = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + id;
+
+        db.execSQL(deleteQuery);
+        db.close();
     }
 
     public void deleteRowWithCondition(String conditionValue) {
@@ -66,6 +76,7 @@ public class favorateHalper extends SQLiteOpenHelper {
 
         SQLiteDatabase database = this.getReadableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_ID, model.getId());
         contentValues.put(COLUMN_NAME, model.getName());
         contentValues.put(COLUMN_IMAGE_URL, model.getImage());
         contentValues.put(COLUMN_VIDEO, model.getVideo());

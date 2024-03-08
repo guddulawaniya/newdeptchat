@@ -8,6 +8,23 @@
     tools:context=".chat_activity">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/ChatRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@id/locklinear"
+        android:layout_below="@id/toolbar"
+        android:layout_margin="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/locklinearbg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.325">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
     <LinearLayout
 
         android:layout_width="wrap_content"
@@ -49,22 +66,6 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ChatRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_above="@id/locklinear"
-        android:layout_below="@id/toolbar"
-        android:layout_margin="@dimen/_16sdp"
-        app:layout_constraintBottom_toTopOf="@+id/chatlocklinearlayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/locklinear"
-        app:layout_constraintVertical_bias="0.325">
-
-    </androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
         android:id="@+id/locklinear"

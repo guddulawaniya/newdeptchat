@@ -120,25 +120,48 @@
 
     </LinearLayout>
 
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/native_ad"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:minHeight="100dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
+
+<!--        <FrameLayout-->
+<!--            android:id="@+id/nativead"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/nativeadheight"-->
+<!--            android:backgroundTint="@color/primarycolor"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent">-->
+
+<!--        </FrameLayout>-->
+<!--    </RelativeLayout>-->
     <RelativeLayout
-        android:id="@+id/native_ad"
+        android:id="@+id/ada"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_alignParentBottom="true"
+        android:layout_margin="1dp"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintHorizontal_bias="0.5"
+        ads:layout_constraintStart_toStartOf="parent">
 
         <FrameLayout
-            android:id="@+id/nativead"
+            android:id="@+id/bannerada"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/nativeadheight"
-            android:backgroundTint="@color/primarycolor"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:backgroundTint="@color/primarycolor" />
 
-        </FrameLayout>
     </RelativeLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

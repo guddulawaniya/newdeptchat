@@ -6,7 +6,15 @@ public class YourDataModel {
     private String img;
     private String video;
 
-    // Getters and setters
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
 
     public YourDataModel(String text, String img, String video) {

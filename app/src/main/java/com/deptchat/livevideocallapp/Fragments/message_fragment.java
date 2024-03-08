@@ -21,6 +21,7 @@ import com.deptchat.livevideocallapp.Ads.bannerad;
 import com.deptchat.livevideocallapp.R;
 import com.deptchat.livevideocallapp.show_history_record;
 import com.deptchat.livevideocallapp.sqllite.chatHalper;
+import com.deptchat.livevideocallapp.sqllite.favorateHalper;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class message_fragment extends Fragment {
     LinearLayout nodatafound;
     private RecyclerView recView;
     String img, video, name, city;
-    Cursor partydb, favoratehelper;
+    Cursor partydb, favorate;
     TextView favnumber;
 
 
@@ -45,6 +46,10 @@ public class message_fragment extends Fragment {
         favnumber = view.findViewById(R.id.favnumber);
         recView = view.findViewById(R.id.chatrecyclerview);
         chatroom = new ArrayList<>();
+
+
+        favorate = new favorateHalper(getContext()).getdata();
+        favnumber.setText(favorate.getCount()+"");
 
 
         try {
@@ -99,13 +104,13 @@ public class message_fragment extends Fragment {
     public void favoratelist() {
 
         partydb = new chatHalper(getContext()).getdata();
-
         if (partydb != null && partydb.moveToNext()) {
             do {
+                int id = partydb.getInt(0);
                 String name = partydb.getString(1);
                 String image = partydb.getString(2);
                 String video = partydb.getString(3);
-                chatroom.add(new favoratemodule(name, image, video));
+                chatroom.add(new favoratemodule(id,name, image, video));
 
             } while (partydb.moveToNext());
 

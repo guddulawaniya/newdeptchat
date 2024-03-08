@@ -3,8 +3,10 @@ package com.deptchat.livevideocallapp.Ads;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +53,9 @@ public class bannerad {
     static SharedPreferences sharedPreferences ;
 
 
+
     public bannerad(Context ctx, Activity atx) {
+
         context = ctx;
         activity=atx;
         sharedPreferences = context.getSharedPreferences("login", Context.MODE_PRIVATE);

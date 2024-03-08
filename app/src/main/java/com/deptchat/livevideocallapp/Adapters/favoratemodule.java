@@ -1,12 +1,22 @@
 package com.deptchat.livevideocallapp.Adapters;
 
 public class favoratemodule {
-   private String name,image,video;
+   private String  name,image,video;
+   int id;
 
-    public favoratemodule(String name, String image, String video) {
+    public favoratemodule(int id, String name, String image, String video) {
         this.name = name;
         this.image = image;
         this.video = video;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

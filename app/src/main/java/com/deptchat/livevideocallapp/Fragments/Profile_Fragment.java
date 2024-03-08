@@ -33,6 +33,7 @@ public class Profile_Fragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile_, container, false);
 
+
         try {
 //            new bannerad(this,this).Native_Ad(findViewById(R.id.nativead),findViewById(R.id.my_template));
             new bannerad(getContext(),getActivity()).Banner_Ad(view.findViewById(R.id.bannerad));

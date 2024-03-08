@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,7 +22,17 @@ import com.deptchat.livevideocallapp.sqllite.ConnectCallTB;
 import com.deptchat.livevideocallapp.sqllite.favorateHalper;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class show_history_record extends AppCompatActivity {
 
@@ -41,8 +52,9 @@ public class show_history_record extends AppCompatActivity {
         list = new ArrayList<>();
         new intersital(this).Show_Ads();
         try {
-            new bannerad(this,this).Native_Ad(findViewById(R.id.nativead),findViewById(R.id.my_template));
+//            new bannerad(this,this).Native_Ad(findViewById(R.id.nativead),findViewById(R.id.my_template));
             new bannerad(this,this).Banner_Ad(findViewById(R.id.bannerad));
+            new bannerad(this,this).Banner_Ad(findViewById(R.id.bannerada));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -81,10 +93,11 @@ public class show_history_record extends AppCompatActivity {
 
         if (partydb != null && partydb.moveToNext()) {
             do {
+                int id = partydb.getInt(0);
                 String name = partydb.getString(1);
                 String image = partydb.getString(2);
                 String video = partydb.getString(3);
-                list.add(new favoratemodule(name, image, video));
+                list.add(new favoratemodule(id,name, image, video));
 
 
             } while (partydb.moveToNext());
@@ -102,10 +115,11 @@ public class show_history_record extends AppCompatActivity {
 
         if (connectcall != null && connectcall.moveToNext()) {
             do {
+                int id = connectcall.getInt(0);
                 String name = connectcall.getString(1);
                 String image = connectcall.getString(2);
                 String video = connectcall.getString(3);
-                list.add(new favoratemodule(name, image, video));
+                list.add(new favoratemodule(id,name, image, video));
 
 
             } while (connectcall.moveToNext());
@@ -114,7 +128,5 @@ public class show_history_record extends AppCompatActivity {
             historyshowAdapter history = new historyshowAdapter(list, this);
             recyclerView.setAdapter(history);
         }
-
-
     }
 }

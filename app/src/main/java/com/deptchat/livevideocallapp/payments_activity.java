@@ -21,15 +21,16 @@ public class payments_activity extends AppCompatActivity {
     String UPIid;
     String phonepay_package = "com.phonepe.app";
     String paytm_package = "net.one97.paytm";
-    String google_package = "com.google.android.apps.walletnfcrel";
+    String google_package = "com.google.android.apps.nbu.paisa.user";
     String bhimupi_package = "in.org.npci.upiapp";
 
-
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payments);
         ImageView backarrow = findViewById(R.id.backarrow);
+        sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
 
         TextView amountext1 = findViewById(R.id.amount1);
         TextView amountext2 = findViewById(R.id.amount2);
@@ -37,13 +38,15 @@ public class payments_activity extends AppCompatActivity {
         RadioGroup radiogroup = findViewById(R.id.radiogroup);
 
         Intent intent = getIntent();
-        int amount = intent.getIntExtra("amount",0);
+        int id = intent.getIntExtra("id",0);
+        String amount =  sharedPreferences.getString("prices","").split("#")[id];
+        String coinstring =  sharedPreferences.getString("prices","").split("#")[id-6];
+        cardcoin = Integer.parseInt(coinstring);
 
-        cardcoin = intent.getIntExtra("cardid", 0);
-        amountext1.setText("₹" + amount);
-        amountext2.setText("₹" + amount);
+        amountext1.setText("₹" + amount+".00");
+        amountext2.setText("₹" + amount+".00");
         UPIid = intent.getStringExtra("upiid");
-        paybutton.setText("Pay ₹" + amount);
+        paybutton.setText("Pay ₹" + amount+".00");
         radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int i) {
@@ -55,7 +58,6 @@ public class payments_activity extends AppCompatActivity {
 
             }
         });
-
 
         paybutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +120,8 @@ public class payments_activity extends AppCompatActivity {
         });
     }
 
-    void payment(int amount, String phonePePackageName) {
+
+    void payment(String amount, String phonePePackageName) {
         Intent upiIntent = new Intent(Intent.ACTION_VIEW);
         String uriString = "upi://pay?pa=" + UPIid + "&pn=PhonePeMerchant&am=" + amount + "&mc=0000&mode=02&purpose=00";
 
@@ -132,7 +135,7 @@ public class payments_activity extends AppCompatActivity {
         startActivity(upiIntent);
     }
 
-    void otherpayment(int amount) {
+    void otherpayment(String amount) {
         Intent upiIntent = new Intent(Intent.ACTION_VIEW);
         String uriString = "upi://pay?pa=" + UPIid + "&pn=PhonePeMerchant&am=" + amount + "&mc=0000&mode=02&purpose=00";
 

@@ -25,7 +25,7 @@ public class chatHalper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTableQuery = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
-                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_ID + " INTEGER, " +
                 COLUMN_NAME + " TEXT," +
                 COLUMN_IMAGE_URL + " TEXT, " +
                 COLUMN_VIDEO + " TEXT);";
@@ -39,17 +39,10 @@ public class chatHalper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void deleteRowWithCondition(String conditionValue) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        String whereClause = COLUMN_NAME + "=?";
-        String[] whereArgs = { conditionValue };
-        db.delete(TABLE_NAME, whereClause, whereArgs);
-        db.close();
-    }
-
     public boolean insertdata(favoratemodule model) {
         SQLiteDatabase database = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(COLUMN_ID, model.getId());
         contentValues.put(COLUMN_NAME, model.getName());
         contentValues.put(COLUMN_IMAGE_URL, model.getImage());
         contentValues.put(COLUMN_VIDEO, model.getVideo());

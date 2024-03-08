@@ -60,14 +60,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_marginStart="10dp"
+                    android:gravity="center"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="?attr/actionBarSize"
                     android:orientation="vertical">
 
                     <ToggleButton
                         android:id="@+id/volume_iv"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:textOff=""
@@ -105,6 +106,7 @@
         <RelativeLayout
             android:id="@+id/notshow"
             android:layout_width="match_parent"
+
 
             android:layout_height="match_parent">
             <include layout="@layout/activity_callring"/>

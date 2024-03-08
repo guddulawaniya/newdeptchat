@@ -1,15 +1,18 @@
 package com.deptchat.livevideocallapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -48,8 +51,10 @@ public class ConnectionVideoActivity extends BaseActi {
     private boolean isMuted = false;
 
     public LinearLayout mFrameLayout;
+    String billing;
 
     RelativeLayout notshow;
+    private CountDownTimer countDownTimer;
 
     public TextView text;
     public ToggleButton volume;
@@ -73,10 +78,12 @@ public class ConnectionVideoActivity extends BaseActi {
 
     RingtonePlayer ringtonePlayer;
     int watchTimeInSeconds;
+    Boolean ispaymentdone;
     int duration;
     boolean checkmic;
     String videourl;
-
+    String    videotimer;
+    int permincoint,availablecoin;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +91,9 @@ public class ConnectionVideoActivity extends BaseActi {
         BannerAds bannerAds = new BannerAds(this);
 //        bannerAds.interstitialads(getActivity());
 
+        SharedPreferences preferences = getSharedPreferences("login", MODE_PRIVATE);
+         permincoint = preferences.getInt("perminchage", 20);
+         availablecoin = preferences.getInt("coins", 0);
         ringtonePlayer = new RingtonePlayer();
 
         ringtonePlayer.playRingtone(this, R.raw.ringing);
@@ -101,7 +111,30 @@ public class ConnectionVideoActivity extends BaseActi {
                 onBackPressed();
             }
         });
+
+//        ispaymentdone = sharedPreferences.getBoolean("ispaymentdone",false);
+//        String[] partsupi = sharedPreferences.getString("upi","123@PAYTM").split("#");
+//
+//        if (partsupi.length == 2) {
+//            // Extract the name and city
+//            billing = partsupi[0];
+//
+//        } else {
+//
+//        }
         sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+        String[] parts = sharedPreferences.getString("payvideo","").split("#");
+
+        if (parts.length == 2) {
+            // Extract the name and city
+            String timer = parts[0];
+            videotimer = parts[1];
+            Log.d("hellorishi-timer", videotimer);
+
+
+        } else {
+
+        }
 
 
 
@@ -137,15 +170,14 @@ public class ConnectionVideoActivity extends BaseActi {
                 }
                 initView();
             }
-        }, 6000);
+        }, 10000);
 
 
     }
 
 
+
     public final void initView() {
-
-
         mVideoView = (VideoView) findViewById(R.id.video_vw);
 
 
@@ -165,7 +197,8 @@ public class ConnectionVideoActivity extends BaseActi {
                     mVideoView.start();
                 }
             }
-        }, 2000);
+        }, 1000);
+
         Phone = findViewById(R.id.phone_iv);
         volume = findViewById(R.id.volume_iv);
         cameraSwitch = findViewById(R.id.switch_camera_iv);
@@ -192,13 +225,6 @@ public class ConnectionVideoActivity extends BaseActi {
 
             }
         });
-        volume.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
 
 
         cameraSwitch.setOnClickListener(new View.OnClickListener() {
@@ -221,30 +247,20 @@ public class ConnectionVideoActivity extends BaseActi {
         mVideoView.start();
 
 
-        mVideoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
-            @Override
-            public boolean onInfo(MediaPlayer mp, int what, int extra) {
-                if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
 
+        if (availablecoin<=permincoint)
+        {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
 
-//                    if (!billing.equals("STOP") && !ispaymentdone) {
-//                        paymentCountDownTimer = new CountDownTimer(Long.parseLong(videotimer), 1000) {
-//                            public void onTick(long millisUntilFinished) {
-//
-//                            }
-//
-//                            public void onFinish() {
-//                                // This method will be called when the countdown is finished
-//                                Intent intent = new Intent(ConnectionVideoActivity.this, plan_activity.class);
-//                                startActivity(intent);
-//                                finish();
-//                            }
-//                        }.start();
-//                    }
+                    Intent intent = new Intent(ConnectionVideoActivity.this, plan_activity.class);
+                    startActivity(intent);
+                    finish();
+
                 }
-                return false;
-            }
-        });
+            }, Long.parseLong(videotimer));
+        }
 
 
         handler = new Handler();
@@ -295,9 +311,7 @@ public class ConnectionVideoActivity extends BaseActi {
     }
 
     void stopwatching() {
-        SharedPreferences preferences = getSharedPreferences("login", MODE_PRIVATE);
-        int permincoint = preferences.getInt("perminchage", 20);
-        int availablecoin = preferences.getInt("coins", 0);
+
 
         int remainingcoins = availablecoin - watchTimeInSeconds * (permincoint / 60);
 
@@ -310,15 +324,6 @@ public class ConnectionVideoActivity extends BaseActi {
     }
 
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mVideoView != null) {
-
-            mVideoView.stopPlayback();
-
-        }
-    }
 
     private void updateWatchTime() {
         int currentPosition = mVideoView.getCurrentPosition();
@@ -364,6 +369,18 @@ public class ConnectionVideoActivity extends BaseActi {
 
         // Restart the camera preview
         startCamera();
+    }
+
+    @Override // androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity
+    public void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer!=null) {
+            countDownTimer.cancel();
+            countDownTimer = null;
+        }
+        if (mVideoView != null) {
+            mVideoView.stopPlayback();
+        }
     }
 
     private void unbindCamera() {
