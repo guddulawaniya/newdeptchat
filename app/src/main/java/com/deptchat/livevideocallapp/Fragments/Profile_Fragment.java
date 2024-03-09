@@ -44,6 +44,7 @@ public class Profile_Fragment extends Fragment {
 
 
         LinearLayout rateus = view.findViewById(R.id.rateus);
+        LinearLayout hidepaymentlayout = view.findViewById(R.id.hidepaymentlayout);
         LinearLayout share = view.findViewById(R.id.share);
         LinearLayout settingcard = view.findViewById(R.id.settingcard);
         CardView buybutton = view.findViewById(R.id.buybutton);
@@ -51,9 +52,22 @@ public class Profile_Fragment extends Fragment {
         TextView totalcoin = view.findViewById(R.id.totalcoin);
 
 
+
+
         SharedPreferences preferences = getContext().getSharedPreferences("login", getContext().MODE_PRIVATE);
         int useridtext = preferences.getInt("clientid", 78654568);
         int addnewcoin = preferences.getInt("coins", 0);
+      String  stoppayment = preferences.getString("upi","123@PAYTM").split("#")[0];
+      if (stoppayment.equals("STOP"))
+      {
+          hidepaymentlayout.setVisibility(View.GONE);
+
+      }
+      else
+      {
+          hidepaymentlayout.setVisibility(View.VISIBLE);
+
+      }
 
         userid.setText("ID : " + useridtext);
 

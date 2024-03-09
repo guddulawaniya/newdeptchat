@@ -27,11 +27,12 @@ import dev.shreyaspatil.easyupipayment.model.TransactionDetails;
 
 public class plan_activity extends AppCompatActivity {
 
-    int cardcolordynamic = Color.parseColor("#9E00B7");
-    int background_dynamicColor = Color.parseColor("#33FFDA");
+//    int cardcolordynamic = Color.parseColor("#9E00B7");
+//    int background_dynamicColor = Color.parseColor("#33FFDA");
 
-    String UPIid ;
+    String UPIid;
     TextView coin1, coin2, coin3, coin4, coin5, coin6;
+    TextView discount1, discount2, discount3, discount4, discount5, discount6;
 
     SharedPreferences sharedPreferences;
     String mycoin;
@@ -42,25 +43,24 @@ public class plan_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plan);
-        sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
 
         percount++;
-        String[] parts = sharedPreferences.getString("upi","123@PAYTM").split("#");
+        String[] parts = sharedPreferences.getString("upi", "123@PAYTM").split("#");
         UPIid = parts[0];
-        String count =  sharedPreferences.getString("prices","").split("#")[20];
+        String count = sharedPreferences.getString("prices", "").split("#")[20];
         int countintoINteger = Integer.parseInt(count);
 
-        if ((percount%countintoINteger)==0){
+        if ((percount % countintoINteger) == 0) {
             new intersital(this).Show_Ads();
         }
 
         try {
-            new bannerad(this,this).Native_Ad(findViewById(R.id.nativead),findViewById(R.id.my_template));
-            new bannerad(this,this).Banner_Ad(findViewById(R.id.bannerad));
+//            new bannerad(this,this).Native_Ad(findViewById(R.id.nativead),findViewById(R.id.my_template));
+            new bannerad(this, this).Banner_Ad(findViewById(R.id.bannerad));
         } catch (Exception e) {
 
         }
-
 
 
         ImageView closebutton = findViewById(R.id.closebutton);
@@ -78,6 +78,14 @@ public class plan_activity extends AppCompatActivity {
         coin5 = findViewById(R.id.coins5);
         coin6 = findViewById(R.id.coins6);
 
+        //discount find ids
+        discount1 = findViewById(R.id.discount1);
+        discount2 = findViewById(R.id.discount2);
+        discount3 = findViewById(R.id.discount3);
+        discount4 = findViewById(R.id.discount4);
+        discount5 = findViewById(R.id.discount5);
+        discount6 = findViewById(R.id.discount6);
+
         TextView amount1 = findViewById(R.id.card1amount);
         TextView amount2 = findViewById(R.id.card2amount);
         TextView amount3 = findViewById(R.id.card3amount);
@@ -85,30 +93,43 @@ public class plan_activity extends AppCompatActivity {
         TextView amount5 = findViewById(R.id.card5amount);
         TextView amount6 = findViewById(R.id.card6amount);
 
-        amount1.setText("₹" + sharedPreferences.getString("prices","").split("#")[12]);
-        amount2.setText("₹" + sharedPreferences.getString("prices","").split("#")[13]);
-        amount3.setText("₹" + sharedPreferences.getString("prices","").split("#")[14]);
-        amount4.setText("₹" + sharedPreferences.getString("prices","").split("#")[15]);
-        amount5.setText("₹" + sharedPreferences.getString("prices","").split("#")[16]);
-        amount6.setText("₹" + sharedPreferences.getString("prices","").split("#")[17]);
 
-        coin1.setText(sharedPreferences.getString("prices","").split("#")[6]);
-        coin2.setText(sharedPreferences.getString("prices","").split("#")[7]);
-        coin3.setText(sharedPreferences.getString("prices","").split("#")[8]);
-        coin4.setText(sharedPreferences.getString("prices","").split("#")[9]);
-        coin5.setText(sharedPreferences.getString("prices","").split("#")[10]);
-        coin6.setText(sharedPreferences.getString("prices","").split("#")[11]);
+        // set the discount of data in fields
+        discount1.setText(sharedPreferences.getString("prices", "").split("#")[0]+"OFF");
+        discount2.setText(sharedPreferences.getString("prices", "").split("#")[1]+"OFF");
+        discount3.setText(sharedPreferences.getString("prices", "").split("#")[2]+"OFF");
+        discount4.setText(sharedPreferences.getString("prices", "").split("#")[3]+"OFF");
+        discount5.setText(sharedPreferences.getString("prices", "").split("#")[4]+"OFF");
+        discount6.setText(sharedPreferences.getString("prices", "").split("#")[5]+"OFF");
+
+        // set the coins of data in fields
+
+        coin1.setText(sharedPreferences.getString("prices", "").split("#")[6]);
+        coin2.setText(sharedPreferences.getString("prices", "").split("#")[7]);
+        coin3.setText(sharedPreferences.getString("prices", "").split("#")[8]);
+        coin4.setText(sharedPreferences.getString("prices", "").split("#")[9]);
+        coin5.setText(sharedPreferences.getString("prices", "").split("#")[10]);
+        coin6.setText(sharedPreferences.getString("prices", "").split("#")[11]);
+
+
+        // set the amount data
+        amount1.setText("₹" + sharedPreferences.getString("prices", "").split("#")[12]);
+        amount2.setText("₹" + sharedPreferences.getString("prices", "").split("#")[13]);
+        amount3.setText("₹" + sharedPreferences.getString("prices", "").split("#")[14]);
+        amount4.setText("₹" + sharedPreferences.getString("prices", "").split("#")[15]);
+        amount5.setText("₹" + sharedPreferences.getString("prices", "").split("#")[16]);
+        amount6.setText("₹" + sharedPreferences.getString("prices", "").split("#")[17]);
 
         ConstraintLayout constraintlayout = findViewById(R.id.constraintlayout);
 
         // Example color (orange)
-        card1.setCardBackgroundColor(cardcolordynamic);
-        card2.setCardBackgroundColor(cardcolordynamic);
-        card3.setCardBackgroundColor(cardcolordynamic);
-        card4.setCardBackgroundColor(cardcolordynamic);
-        card5.setCardBackgroundColor(cardcolordynamic);
-        card6.setCardBackgroundColor(cardcolordynamic);
-        constraintlayout.setBackgroundColor(background_dynamicColor);
+//        card1.setCardBackgroundColor(cardcolordynamic);
+//        card2.setCardBackgroundColor(cardcolordynamic);
+//        card3.setCardBackgroundColor(cardcolordynamic);
+//        card4.setCardBackgroundColor(cardcolordynamic);
+//        card5.setCardBackgroundColor(cardcolordynamic);
+//        card6.setCardBackgroundColor(cardcolordynamic);
+//        constraintlayout.setBackgroundColor(background_dynamicColor);
 
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,8 +173,6 @@ public class plan_activity extends AppCompatActivity {
         });
 
 
-
-
         closebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,19 +182,18 @@ public class plan_activity extends AppCompatActivity {
     }
 
 
-
     void nextactivity(int id) {
-        String paymentmode=  sharedPreferences.getString("prices","").split("#")[19];
+        String paymentmode = sharedPreferences.getString("prices", "").split("#")[19];
 //        String amount =  sharedPreferences.getString("prices","").split("#")[id];
         if (paymentmode.equals("on")) {
             Intent intent = new Intent(plan_activity.this, payments_activity.class);
             intent.putExtra("id", id);
-            intent.putExtra("upiid",UPIid);
+            intent.putExtra("upiid", UPIid);
             startActivity(intent);
             finish();
 
         } else {
-            mycoin = sharedPreferences.getString("prices","").split("#")[id-6];
+            mycoin = sharedPreferences.getString("prices", "").split("#")[id - 6];
             payment(id);
         }
 
@@ -183,7 +201,7 @@ public class plan_activity extends AppCompatActivity {
     }
 
     void payment(int id) {
-       String amount = sharedPreferences.getString("prices","").split("#")[id];
+        String amount = sharedPreferences.getString("prices", "").split("#")[id];
 
         Intent upiIntent = new Intent(Intent.ACTION_VIEW);
         String uriString = "upi://pay?pa=" + UPIid + "&pn=PhonePeMerchant&am=" + amount + "&mc=0000&mode=02&purpose=00";
@@ -208,10 +226,10 @@ public class plan_activity extends AppCompatActivity {
 
                 SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
 
-                int avaiablecoin = preferences.getInt("coins",0);
+                int avaiablecoin = preferences.getInt("coins", 0);
 
                 int coints = Integer.parseInt(mycoin);
-                avaiablecoin = avaiablecoin+coints;
+                avaiablecoin = avaiablecoin + coints;
 
                 SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
                 editor.putInt("coins", avaiablecoin);
@@ -227,10 +245,6 @@ public class plan_activity extends AppCompatActivity {
             }
         }
     }
-
-
-
-
 
 
     private void startUpiPayment(String amount) {

@@ -80,6 +80,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/hidepaymentlayout"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_marginStart="16dp"

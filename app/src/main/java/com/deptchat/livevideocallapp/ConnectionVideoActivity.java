@@ -84,6 +84,7 @@ public class ConnectionVideoActivity extends BaseActi {
     String videourl;
     String    videotimer;
     int permincoint,availablecoin;
+    String stoppayment;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,12 +92,13 @@ public class ConnectionVideoActivity extends BaseActi {
         BannerAds bannerAds = new BannerAds(this);
 //        bannerAds.interstitialads(getActivity());
 
-        SharedPreferences preferences = getSharedPreferences("login", MODE_PRIVATE);
-         permincoint = preferences.getInt("perminchage", 20);
-         availablecoin = preferences.getInt("coins", 0);
+        sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
+         permincoint = sharedPreferences.getInt("perminchage", 20);
+         availablecoin = sharedPreferences.getInt("coins", 0);
         ringtonePlayer = new RingtonePlayer();
+        stoppayment = sharedPreferences.getString("upi","123@PAYTM").split("#")[0];
 
-        ringtonePlayer.playRingtone(this, R.raw.ringing);
+//        ringtonePlayer.playRingtone(this, R.raw.ringing);
 
         previewView = findViewById(R.id.previewView);
         username = findViewById(R.id.nametxt);
@@ -107,7 +109,7 @@ public class ConnectionVideoActivity extends BaseActi {
         reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ringtonePlayer.stopRingtone();
+//                ringtonePlayer.stopRingtone();
                 onBackPressed();
             }
         });
@@ -122,7 +124,6 @@ public class ConnectionVideoActivity extends BaseActi {
 //        } else {
 //
 //        }
-        sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
         String[] parts = sharedPreferences.getString("payvideo","").split("#");
 
         if (parts.length == 2) {
@@ -164,7 +165,7 @@ public class ConnectionVideoActivity extends BaseActi {
             public void run() {
                 notshow.setVisibility(View.GONE);
                 BaseActi.enableVideo = true;
-                ringtonePlayer.stopRingtone();
+//                ringtonePlayer.stopRingtone();
                 try {
                     netConnection();
                 } catch (IOException e) {
@@ -172,7 +173,7 @@ public class ConnectionVideoActivity extends BaseActi {
                 }
                 initView();
             }
-        }, 10000);
+        }, 5000);
 
 
     }
@@ -228,7 +229,6 @@ public class ConnectionVideoActivity extends BaseActi {
             }
         });
 
-
         cameraSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -249,9 +249,11 @@ public class ConnectionVideoActivity extends BaseActi {
         mVideoView.start();
 
 
+        if (stoppayment.equals("STOP")) {
+            return;
 
-        if (availablecoin<=permincoint)
-        {
+        } else {
+        if (availablecoin <= permincoint) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -263,6 +265,7 @@ public class ConnectionVideoActivity extends BaseActi {
                 }
             }, Long.parseLong(videotimer));
         }
+    }
 
 
         handler = new Handler();

@@ -43,7 +43,7 @@ public class payments_activity extends AppCompatActivity {
 
         TextView amountext1 = findViewById(R.id.amount1);
         TextView amountext2 = findViewById(R.id.amount2);
-        Button paybutton = findViewById(R.id.paybutton);
+        TextView paybutton = findViewById(R.id.paybutton);
         RadioGroup radiogroup = findViewById(R.id.radiogroup);
 
         dialog = new Dialog(this);
@@ -111,7 +111,9 @@ public class payments_activity extends AppCompatActivity {
                             break;
                         case 4:
                             if (isPhonePeInstalled(bhimupi_package)) {
-                                payment(amount, bhimupi_package);
+
+                                otherpayment(amount);
+//                                payment(amount, bhimupi_package);
                             } else {
                                 Toast.makeText(payments_activity.this, "BHIM UPI not Installed", Toast.LENGTH_SHORT).show();
 

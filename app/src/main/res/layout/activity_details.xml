@@ -215,9 +215,9 @@
                         android:id="@+id/permincharge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity=""
-                        android:drawableStart="@drawable/diamond"
+                        android:drawableStart="@drawable/diamond26"
 
+                        android:layout_gravity="center"
                         android:drawablePadding="8dp"
                         android:text="50/min"
                         android:textColor="#FAC012"

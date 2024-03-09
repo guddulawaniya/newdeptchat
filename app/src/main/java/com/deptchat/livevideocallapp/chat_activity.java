@@ -42,7 +42,7 @@ public class chat_activity extends AppCompatActivity {
 
     ImageView back_arrow;
     CircleImageView videocall;
-    TextView userName, textmessage, buyfreevideobutton;
+    TextView userName, textmessage, cointext,buyfreevideobutton;
     ImageView chatmenu;
     LinearLayout locklinearbg;
     CardView sendsms;
@@ -66,10 +66,12 @@ public class chat_activity extends AppCompatActivity {
 //       String age = new DecimalFormat("18").format(new Random().nextInt(36));
         SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
         String imagetext = preferences.getString("image", null);
+        int permincharge = preferences.getInt("perminchage",0);
         String name = preferences.getString("name", null);
         String video = preferences.getString("video", null);
         int avaiblecoin = preferences.getInt("coins", 0);
         sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+
 
 
 //        messageHelper = new chatHalper(this);
@@ -95,6 +97,7 @@ public class chat_activity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
+        cointext = findViewById(R.id.cointext);
         back_arrow = findViewById(R.id.backarrow);
         userName = findViewById(R.id.userName);
         chatmenu = findViewById(R.id.chatmenu);
@@ -106,8 +109,22 @@ public class chat_activity extends AppCompatActivity {
         chatlinear = findViewById(R.id.locklinear);
         locklinearbg = findViewById(R.id.locklinearbg);
         sendsms.setEnabled(false);
+        String  stoppayment = preferences.getString("upi","123@PAYTM").split("#")[0];
 
-        if (avaiblecoin > 0) {
+        if (stoppayment.equals("STOP"))
+        {
+            cointext.setVisibility(View.GONE);
+        }
+        else
+        {
+            cointext.setVisibility(View.VISIBLE);
+
+        }
+
+
+        cointext.setText(permincharge+"/min");
+
+        if (avaiblecoin > 0 || stoppayment.equals("STOP") ) {
             chatlocklinearlayout.setVisibility(View.INVISIBLE);
             chatlinear.setVisibility(View.VISIBLE);
             locklinearbg.setVisibility(View.INVISIBLE);

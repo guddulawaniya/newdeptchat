@@ -75,6 +75,18 @@ public class details_activity extends AppCompatActivity {
         TextView permincharge = findViewById(R.id.permincharge);
         toggleFavorite.setTextOff("");
         toggleFavorite.setTextOn("");
+        sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+
+        String[] parts = sharedPreferences.getString("upi","123@PAYTM").split("#");
+         String stoppayment = parts[0];
+         if (stoppayment.equals("STOP"))
+         {
+             permincharge.setVisibility(View.GONE);
+
+         }
+         else {
+             permincharge.setVisibility(View.VISIBLE);
+         }
 
 
         apiInterface = ApiWebServices.getApiInterface();
@@ -84,7 +96,7 @@ public class details_activity extends AppCompatActivity {
         int randomIndex = random.nextInt(numbers.length);
         String randomAge = numbers[randomIndex];
         district.setText(randomAge);
-        sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
+
         imageid = sharedPreferences.getInt("id", 0);
 
 

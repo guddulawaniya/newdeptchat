@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -41,6 +42,7 @@ public class meta_fragment extends Fragment {
     private int count = 0;
     TextView textviewsetnumber,coins;
     Cursor partydb;
+    LinearLayout coinlayout;
     LottieAnimationView LottieAnimationView,startbutton;
 
 
@@ -50,6 +52,7 @@ public class meta_fragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meta, container, false);
 
+        coinlayout = view.findViewById(R.id.coinlayout);
          textviewsetnumber = view.findViewById(R.id.loopnumbers);
         image1 = view.findViewById(R.id.image1);
         image2 = view.findViewById(R.id.image2);
@@ -72,28 +75,30 @@ public class meta_fragment extends Fragment {
         SharedPreferences preferences = getActivity().getSharedPreferences("login", getActivity().MODE_PRIVATE);
         int permincharge = preferences.getInt("perminchage", 0);
         int availablecoin = preferences.getInt("coins", 0);
+        String  stoppayment = preferences.getString("upi","123@PAYTM").split("#")[0];
+        if (stoppayment.equals("STOP"))
+        {
+            coinlayout.setVisibility(View.GONE);
+
+        }else
+        {
+            coinlayout.setVisibility(View.VISIBLE);
+        }
+
         coins.setText(""+availablecoin);
+
 
             startbutton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (availablecoin>permincharge) {
 
                         startbutton.setVisibility(View.GONE);
-
-
                         LottieAnimationView.setVisibility(View.VISIBLE);
                         image1.setVisibility(View.VISIBLE);
                         image2.setVisibility(View.VISIBLE);
                         image3.setVisibility(View.VISIBLE);
                         fetchData();
 
-                    }
-                    else
-                    {
-                        Intent intent = new Intent(getContext(), plan_activity.class);
-                        getActivity().startActivity(intent);
-                    }
 
                 }
             });

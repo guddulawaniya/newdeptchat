@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:id="@+id/constraintlayout"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     tools:context=".plan_activity">
 
     <RelativeLayout
@@ -14,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="100dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,35 +40,81 @@
     </RelativeLayout>
 
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
-        android:text="Unlock Video Premium"
-        android:textColor="@color/white"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/decsription"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="center"
-        android:text="@string/unlock_title"
-        android:textColor="@color/white"
-        android:textSize="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView9"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        android:background="#E91E63"
+        android:padding="12dp"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintHorizontal_bias="0.5"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/closebutton"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/admob_close_button_white_circle_black_cross" />
+
+        <TextView
+            android:id="@+id/txtRecharge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="-10dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginBottom="15dp"
+            android:layout_toStartOf="@+id/closebutton"
+            android:gravity="center"
+            android:text="Girl is Waiting for You, Buy Gem to Video Chat with Her"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        ads:layout_constraintHorizontal_bias="1.0"
+        ads:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/diamond" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="My Diamonds:"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/mydiamonds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -74,7 +122,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_16sdp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/ad"
+        ads:layout_constraintHorizontal_bias="1.0"
+        ads:layout_constraintTop_toBottomOf="@+id/linearLayout7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -87,14 +136,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card1"
+                style="?attr/materialCardViewOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-
-                app:cardCornerRadius="15dp">
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="15dp"
+                app:strokeColor="@color/primarycolor"
+                app:strokeWidth="@dimen/_3sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -104,6 +156,7 @@
 
                     <TextView
 
+                        android:id="@+id/discount1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|top"
@@ -128,7 +181,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:text="9,600"
-                        android:textColor="@color/white"
+                        android:textColor="#E6AE05"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -137,7 +190,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="#A16103"
+                        android:background="@color/primarycolor"
                         android:gravity="center"
                         android:padding="@dimen/_3sdp"
                         android:text="1"
@@ -148,15 +201,19 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card2"
+                style="?attr/materialCardViewOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:cardCornerRadius="15dp">
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="15dp"
+                app:strokeColor="@color/primarycolor"
+                app:strokeWidth="@dimen/_3sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -165,6 +222,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/discount2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|top"
@@ -189,7 +247,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:text="11,000"
-                        android:textColor="@color/white"
+                        android:textColor="#E6AE05"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -198,7 +256,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="#A16103"
+                        android:background="@color/primarycolor"
                         android:gravity="center"
                         android:padding="@dimen/_3sdp"
                         android:text="₹ 200"
@@ -209,15 +267,19 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card3"
+                style="?attr/materialCardViewOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:cardCornerRadius="15dp">
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="15dp"
+                app:strokeColor="@color/primarycolor"
+                app:strokeWidth="@dimen/_3sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -226,6 +288,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/discount3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|top"
@@ -250,7 +313,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:text="36,700"
-                        android:textColor="@color/white"
+                        android:textColor="#E6AE05"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -259,7 +322,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="#A16103"
+                        android:background="@color/primarycolor"
                         android:gravity="center"
                         android:padding="@dimen/_3sdp"
                         android:text="₹ 600"
@@ -270,7 +333,7 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 
@@ -284,13 +347,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card4"
+                style="?attr/materialCardViewOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:cardCornerRadius="15dp">
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="15dp"
+                app:strokeColor="@color/primarycolor"
+                app:strokeWidth="@dimen/_3sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -299,6 +366,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/discount4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|top"
@@ -323,7 +391,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:text="95,600"
-                        android:textColor="@color/white"
+                        android:textColor="#E6AE05"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -332,7 +400,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="#A16103"
+                        android:background="@color/primarycolor"
                         android:gravity="center"
                         android:padding="@dimen/_3sdp"
                         android:text="₹ 1,500"
@@ -343,15 +411,19 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card5"
+                style="?attr/materialCardViewOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:cardCornerRadius="15dp">
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="15dp"
+                app:strokeColor="@color/primarycolor"
+                app:strokeWidth="@dimen/_3sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -360,6 +432,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/discount5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|top"
@@ -384,7 +457,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:text="165,600"
-                        android:textColor="@color/white"
+                        android:textColor="#E6AE05"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -393,7 +466,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="#A16103"
+                        android:background="@color/primarycolor"
                         android:gravity="center"
                         android:padding="@dimen/_3sdp"
                         android:text="₹ 2,500"
@@ -404,15 +477,19 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card6"
+                style="?attr/materialCardViewOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:cardCornerRadius="15dp">
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="15dp"
+                app:strokeColor="@color/primarycolor"
+                app:strokeWidth="@dimen/_3sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -421,6 +498,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/discount6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left|top"
@@ -445,7 +523,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:text="339,000"
-                        android:textColor="@color/white"
+                        android:textColor="#E6AE05"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -454,7 +532,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="#A16103"
+                        android:background="@color/primarycolor"
                         android:gravity="center"
                         android:padding="@dimen/_3sdp"
                         android:text="₹ 5000"
@@ -465,7 +543,7 @@
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
     </LinearLayout>
@@ -492,29 +570,6 @@
     </RelativeLayout>
 
 
-    <VideoView
-        android:id="@+id/videoView"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="16dp"
-        android:visibility="gone"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/closebutton" />
 
 
-    <ImageView
-        android:id="@+id/closebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/close_icon"
-        app:tint="@color/white" />
 </androidx.constraintlayout.widget.ConstraintLayout>
