@@ -238,7 +238,7 @@ public class chat_activity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Chatdatamodule> call, Throwable t) {
-                Toast.makeText(chat_activity.this, ""+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(chat_activity.this, ""+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });

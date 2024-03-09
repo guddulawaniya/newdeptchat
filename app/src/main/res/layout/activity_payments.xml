@@ -147,6 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Choose Payment Method"
+                android:textSize="@dimen/_14sdp"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
@@ -157,67 +158,74 @@
                 <RadioGroup
                     android:id="@+id/radiogroup"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_8sdp"
                     android:layout_height="match_parent">
 
                     <RadioButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
+                        android:buttonTint="@color/switchcolor"
                         android:drawableEnd="@drawable/phonepay_icon"
                         android:drawablePadding="@dimen/_10sdp"
                         android:gravity="center_vertical"
                         android:layoutDirection="rtl"
-                        android:buttonTint="@color/switchcolor"
                         android:text="Phonepay"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
 
                     <RadioButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        android:drawableEnd="@drawable/google_pay"
                         android:buttonTint="@color/switchcolor"
+                        android:drawableEnd="@drawable/google_pay"
                         android:drawablePadding="@dimen/_10sdp"
                         android:gravity="center_vertical"
                         android:layoutDirection="rtl"
                         android:text="Google pay"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
 
                     <RadioButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        android:drawableEnd="@drawable/paytm"
                         android:buttonTint="@color/switchcolor"
+                        android:drawableEnd="@drawable/paytm"
                         android:drawablePadding="@dimen/_10sdp"
                         android:gravity="center_vertical"
                         android:layoutDirection="rtl"
                         android:text="Paytm"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
 
                     <RadioButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        android:drawableEnd="@drawable/bhim"
                         android:buttonTint="@color/switchcolor"
+                        android:drawableEnd="@drawable/bhim"
                         android:drawablePadding="@dimen/_10sdp"
                         android:gravity="center_vertical"
                         android:layoutDirection="rtl"
                         android:text="BHIM UPI"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
 
                     <RadioButton
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
                         android:buttonTint="@color/switchcolor"
-                        android:drawableEnd="@drawable/categories"
+                        android:drawableEnd="@drawable/other"
+                        android:drawableTint="@color/black"
                         android:drawablePadding="@dimen/_10sdp"
                         android:gravity="center_vertical"
                         android:layoutDirection="rtl"
                         android:text="Others"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
 
                     <Button
                         android:id="@+id/paybutton"
@@ -226,7 +234,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_10sdp"
-                        android:backgroundTint="#1A09D8"
+                        android:backgroundTint="@color/primarycolor"
                         android:text="Pay ₹200"
                         android:textColor="@color/white"
                         android:textStyle="bold" />

@@ -172,6 +172,7 @@ public class plan_activity extends AppCompatActivity {
             intent.putExtra("id", id);
             intent.putExtra("upiid",UPIid);
             startActivity(intent);
+            finish();
 
         } else {
             mycoin = sharedPreferences.getString("prices","").split("#")[id-6];

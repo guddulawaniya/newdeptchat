@@ -6,15 +6,17 @@
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/textViewRatingDialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="@color/white"
         android:text="Rate this app"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <RatingBar
-        android:id="@+id/ratingBar"
+        android:id="@+id/ratingBarDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

@@ -117,10 +117,9 @@
                         android:textSize="@dimen/_11sdp" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:padding="@dimen/_5sdp"
                         android:src="@drawable/diamond" />
 
                     <TextView
@@ -179,10 +178,9 @@
                         android:textSize="@dimen/_11sdp" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:padding="@dimen/_5sdp"
                         android:src="@drawable/diamond" />
 
                     <TextView
@@ -241,10 +239,9 @@
                         android:textSize="@dimen/_11sdp" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:padding="@dimen/_5sdp"
                         android:src="@drawable/diamond" />
 
                     <TextView
@@ -315,10 +312,9 @@
                         android:textSize="@dimen/_11sdp" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:padding="@dimen/_5sdp"
                         android:src="@drawable/diamond" />
 
                     <TextView
@@ -377,10 +373,9 @@
                         android:textSize="@dimen/_11sdp" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:padding="@dimen/_5sdp"
                         android:src="@drawable/diamond" />
 
                     <TextView
@@ -439,10 +434,9 @@
                         android:textSize="@dimen/_11sdp" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:padding="@dimen/_5sdp"
                         android:src="@drawable/diamond" />
 
                     <TextView

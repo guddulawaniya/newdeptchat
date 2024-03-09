@@ -1,18 +1,25 @@
 package com.deptchat.livevideocallapp;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class payments_activity extends AppCompatActivity {
@@ -24,7 +31,9 @@ public class payments_activity extends AppCompatActivity {
     String google_package = "com.google.android.apps.nbu.paisa.user";
     String bhimupi_package = "in.org.npci.upiapp";
 
+    Dialog dialog;
     SharedPreferences sharedPreferences;
+    Button nobtn, yesbtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +46,13 @@ public class payments_activity extends AppCompatActivity {
         Button paybutton = findViewById(R.id.paybutton);
         RadioGroup radiogroup = findViewById(R.id.radiogroup);
 
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.payment_back_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        nobtn = dialog.findViewById(R.id.cancel);
+        yesbtn = dialog.findViewById(R.id.dateconfirmbtn);
+
         Intent intent = getIntent();
         int id = intent.getIntExtra("id",0);
         String amount =  sharedPreferences.getString("prices","").split("#")[id];
@@ -47,6 +63,7 @@ public class payments_activity extends AppCompatActivity {
         amountext2.setText("₹" + amount+".00");
         UPIid = intent.getStringExtra("upiid");
         paybutton.setText("Pay ₹" + amount+".00");
+
         radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int i) {
@@ -58,6 +75,7 @@ public class payments_activity extends AppCompatActivity {
 
             }
         });
+
 
         paybutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,9 +141,11 @@ public class payments_activity extends AppCompatActivity {
 
     void payment(String amount, String phonePePackageName) {
         Intent upiIntent = new Intent(Intent.ACTION_VIEW);
+
         String uriString = "upi://pay?pa=" + UPIid + "&pn=PhonePeMerchant&am=" + amount + "&mc=0000&mode=02&purpose=00";
 
-        // Intent upiIntent = new Intent(Intent.ACTION_VIEW);String uriString = "upi://pay?pa=Vyapar.170266868298@hdfcbank&pn=Default&tr=STQU170266868298&mc=8999&am=1&tn=payment&cu=INR";
+        // Intent upiIntent = new Intent(Intent.ACTION_VIEW);
+        // String uriString = "upi://pay?pa=Vyapar.170266868298@hdfcbank&pn=Default&tr=STQU170266868298&mc=8999&am=1&tn=payment&cu=INR";
 
         upiIntent.setData(Uri.parse(uriString));
 //        Intent chooser = Intent.createChooser(upiIntent, "Pay with...");
@@ -143,8 +163,8 @@ public class payments_activity extends AppCompatActivity {
 
         upiIntent.setData(Uri.parse(uriString));
         Intent chooser = Intent.createChooser(upiIntent, "Pay with...");
-
         startActivityForResult(chooser, 100, null);
+
     }
 
 
@@ -218,5 +238,35 @@ public class payments_activity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    public void onBackPressed() {
+        //  super.onBackPressed();
+        dialog.setCancelable(false);
+        dialog.show();
+
+        yesbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        nobtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                if (getIntent().getStringExtra("back").equals("1")){
+//                    Intent intent = new Intent(securepay.this, Privacyac.class);
+//                    intent.putExtra("fbads","1");
+//                    startActivity(intent);
+//                    finish();
+//                }else if(getIntent().getStringExtra("back").equals("1")){}
+                Intent intent = new Intent(payments_activity.this, plan_activity.class);
+                intent.putExtra("isfromstart", true);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+    }
 
 }

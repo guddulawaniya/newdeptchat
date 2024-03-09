@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -106,20 +107,52 @@ public class Profile_Fragment extends Fragment {
         rateus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + getContext().getPackageName()));
-                intent.addFlags(1208483840);
-                try {
-                    getContext().startActivity(intent);
-                } catch (ActivityNotFoundException unused) {
-                    getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + getContext().getPackageName())));
-                }
-                Toast.makeText(getContext(), "Thank You for your Rating", Toast.LENGTH_LONG).show();
+
+                showRatingDialog();
+//                Intent intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + getContext().getPackageName()));
+//                intent.addFlags(1208483840);
+//                try {
+//                    getContext().startActivity(intent);
+//                } catch (ActivityNotFoundException unused) {
+//                    getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + getContext().getPackageName())));
+//                }
+//                Toast.makeText(getContext(), "Thank You for your Rating", Toast.LENGTH_LONG).show();
             }
         });
 
 
         return view;
 
+    }
+    private void showRatingDialog() {
+        // Create a custom layout inflater
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view = inflater.inflate(R.layout.dialog_rating, null);
+
+        // Find views by their IDs in the custom layout
+        TextView textViewDialogTitle = view.findViewById(R.id.textViewRatingDialogTitle);
+        RatingBar ratingBarDialog = view.findViewById(R.id.ratingBarDialog);
+
+        // Set up the AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setView(view)
+                .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        float rating = ratingBarDialog.getRating();
+                        // Handle the rating as needed (e.g., submit to a server)
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+
+        // Show the AlertDialog
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
 }
