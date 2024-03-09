@@ -134,6 +134,10 @@ public class details_activity extends AppCompatActivity {
             public void onClick(View v) {
                 diamond_bottomsheet bottomsheet = new diamond_bottomsheet();
 
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", imageid); // Replace "key" with the actual key and "your_data" with the data to be passed
+                bottomsheet.setArguments(bundle);
+
                 bottomsheet.show(getSupportFragmentManager(), bottomsheet.getTag());
             }
         });

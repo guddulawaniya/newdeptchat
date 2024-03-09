@@ -161,6 +161,8 @@ public class splash_screen extends AppCompatActivity {
                             myEdit.putString("url", url);
                             myEdit.putString("gameurl", gameurl);
 
+                            String[] slider = ads.getNativeType().split("#");
+                            myEdit.putString("slider", slider[0]);
                             myEdit.putString("payvideo", ads.getNativeType());
                             myEdit.putString("upi", ads.getRewardAd());
 

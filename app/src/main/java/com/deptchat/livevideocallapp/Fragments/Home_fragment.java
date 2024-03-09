@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,6 +54,21 @@ public class Home_fragment extends Fragment {
         sliderlist = new ArrayList<>();
         sliderView = view.findViewById(R.id.slider);
         sliderfetchData();
+        CardView slidercard = view.findViewById(R.id.slidercard);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login",MODE_PRIVATE);
+        String condition = sharedPreferences.getString("slider","off");
+
+        if (condition.equals("on-on"))
+        {
+
+            slidercard.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            slidercard.setVisibility(View.GONE);
+
+        }
 
 
         sliderView.setAutoCycleDirection(SliderView.LAYOUT_DIRECTION_LTR);
@@ -70,7 +86,7 @@ public class Home_fragment extends Fragment {
         } catch (Exception e) {
 
         }
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login", MODE_PRIVATE);
+
 
         progressDialog = view.findViewById(R.id.progressBar);
         permincoin = sharedPreferences.getString("prices", "10").split("#")[18];

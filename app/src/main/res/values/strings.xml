@@ -89,8 +89,9 @@
     <string name="facebook_app_id">408180348374051</string>
     <string name="fb_login_protocol_scheme">fb1178420689695972</string>
     <string name="facebook_client_token">fb9134e654bc479083cef2acf4f73258</string>
-    <string name="license">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAj7NM2zJfwBSXgrZZ262LaBWGpg3gZBc5+b4WN9EoHC7rBLu0i04lpnxGjzUcK/+DVqjyGEwFe/tqfFI88gSFwFQqvJ8M0xeIhTAOF8e+Qw3doqMCbx9YoQNagVri/URGI3C434Y6l60I9xq9T5Slphgt4jNJTrklVbROUpIG4yOSxQfcIGuvHFAKygv7IYw9bLy+XrejH9ZYR1macS3rXOwefig5+RTh3IoZiuNfNXp6du7GdHoblSFCwQIbkrETYKniYwZ/WHZZtK++LMW2wtIOw8+Hcw5lW67BlWZoFBzzLoWNGZAUPlknzDUO6uw0QQXKZnpLwjs5YA9bwk9wQQIDAQAB</string>
+    <string name="license">NAABIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh7iS+6b729fb5IyddFw7BTGw+jggpMcAVyeB0TfRqN/3HswU+PfYfIqecDdmszbSsi6PrT5uecgLLqKhZ3+OzCql2bbSPTx51BKGIFWPS9lIKlIBTAlp8pBK2u8L4zUE0Ln6+M6/NkGHeioWIZicJQYBQjR+xDRhHb9vabOcIG73ovnfrmTzP5VTN2Fe9c10iRJcVV0ZSEYuIaRpxPrWZom2vzAj7I7Et0bRc+ezFGQgLp288pPkD2lKxDBbm+4q7oFAZleFvgDJ68SHSL0FpnjRaGcYCnTcB7TyiK2IywYYwYaLF8v021Ebv8EF4pJbtuljwSilxmRtFyjCON5slwIVJRUD</string>
     <string name="strike_text"><strike>₹299</strike> </string>
     <string name="strike_text2"><strike>₹399</strike> </string>
     <string name="strike_text3"><strike>₹599</strike> </string>
+
 </resources>

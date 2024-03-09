@@ -96,6 +96,8 @@ dependencies {
    // implementation 'com.github.saitawngpha:NativeAds-RecyclerView:1.0.1'
     implementation ("com.github.smarteist:autoimageslider:1.4.0")
 
+    implementation 'com.android.billingclient:billing:4.0.0'
+
 
 }
 

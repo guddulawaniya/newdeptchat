@@ -54,22 +54,7 @@ public class favorateHalper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteRowWithCondition(String conditionValue) {
-        // Get a writable database
-        SQLiteDatabase db = this.getWritableDatabase();
 
-        // Define the WHERE clause
-        String whereClause = "name=?";
-
-        // Specify the value to be used in the WHERE clause
-        String[] whereArgs = { conditionValue };
-
-        // Execute the delete query with parameterized values
-        db.delete(TABLE_NAME, whereClause, whereArgs);
-
-        // Close the database connection
-        db.close();
-    }
 
 
     public String insertdata(favoratemodule model) {

@@ -51,6 +51,16 @@ public class chatHalper extends SQLiteOpenHelper {
         return result != -1;
     }
 
+    public void deleteDataById(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Use the DELETE statement with a WHERE clause to specify the ID
+        String deleteQuery = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + id;
+
+        db.execSQL(deleteQuery);
+        db.close();
+    }
+
     public Cursor getdata() {
         SQLiteDatabase database = this.getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_NAME;

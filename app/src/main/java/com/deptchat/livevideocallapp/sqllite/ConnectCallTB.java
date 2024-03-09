@@ -40,6 +40,16 @@ public class ConnectCallTB extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public void deleteDataById(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Use the DELETE statement with a WHERE clause to specify the ID
+        String deleteQuery = "DELETE FROM " + TABLE_NAME + " WHERE " + COLUMN_ID + " = " + id;
+
+        db.execSQL(deleteQuery);
+        db.close();
+    }
+
     public String insertData(favoratemodule model) {
         SQLiteDatabase database = this.getWritableDatabase();
 
