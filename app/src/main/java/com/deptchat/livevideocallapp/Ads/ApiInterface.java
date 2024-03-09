@@ -26,7 +26,7 @@ public interface ApiInterface {
     Call<Slidermodule> getAllOthers();
 
     @POST("get_chat_data.php")
-    Call<Chatdatamodule> getchatMessage();
+    Call<List<Chatdatamodule>> getchatMessage();
     @POST("fetch_intro_sentences.php")
     Call<Slidermodule> getIntroSentences();
 

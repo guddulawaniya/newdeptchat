@@ -6,10 +6,9 @@ public class Chatdatamodule {
     private String image;
     private String id;
     private String text;
-    String BASE_IMAGE_URL = "https://gedgetsworld.in/PM_Kisan_Yojana/image_app/";
 
     public String getImage() {
-        return BASE_IMAGE_URL+image;
+        return "https://gedgetsworld.in/PM_Kisan_Yojana/image_app/"+image;
     }
     public void setImage(String value) { this.image = value; }
 

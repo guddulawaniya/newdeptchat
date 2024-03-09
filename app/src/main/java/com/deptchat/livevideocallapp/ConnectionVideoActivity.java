@@ -137,8 +137,10 @@ public class ConnectionVideoActivity extends BaseActi {
         }
 
 
-
         volumeSpeaker();
+
+
+
         if (allPermissionsGranted()) {
             startCamera(); //start camera if permission has been granted by user
         } else {

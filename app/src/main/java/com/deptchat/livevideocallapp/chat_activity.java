@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -20,19 +19,14 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.deptchat.livevideocallapp.Adapters.ChatAdapter;
 import com.deptchat.livevideocallapp.Adapters.Chatdatamodule;
 import com.deptchat.livevideocallapp.Adapters.MessagesModule;
-import com.deptchat.livevideocallapp.Adapters.SliderAdapter;
-import com.deptchat.livevideocallapp.Adapters.Slidermodule;
-import com.deptchat.livevideocallapp.Adapters.favoratemodule;
 import com.deptchat.livevideocallapp.Ads.ApiWebServices;
 import com.deptchat.livevideocallapp.Ads.Interfb;
 import com.deptchat.livevideocallapp.Ads.intersital;
 import com.deptchat.livevideocallapp.sqllite.chatHalper;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -48,14 +42,14 @@ public class chat_activity extends AppCompatActivity {
 
     ImageView back_arrow;
     CircleImageView videocall;
-    TextView userName,textmessage,buyfreevideobutton;
+    TextView userName, textmessage, buyfreevideobutton;
     ImageView chatmenu;
     LinearLayout locklinearbg;
     CardView sendsms;
     RecyclerView recyclerView;
     chatHalper messageHelper;
     ArrayList<MessagesModule> messagelist;
-    LinearLayout chatlocklinearlayout,chatlinear;
+    LinearLayout chatlocklinearlayout, chatlinear;
     SharedPreferences sharedPreferences;
     private int activityOpenCount = 0;
     ChatAdapter adapter;
@@ -71,12 +65,11 @@ public class chat_activity extends AppCompatActivity {
 
 //       String age = new DecimalFormat("18").format(new Random().nextInt(36));
         SharedPreferences preferences = getSharedPreferences("login", Context.MODE_PRIVATE);
-        String imagetext = preferences.getString("image",null);
-        String name = preferences.getString("name",null);
-        String video = preferences.getString("video",null);
-        int avaiblecoin = preferences.getInt("coins",0);
+        String imagetext = preferences.getString("image", null);
+        String name = preferences.getString("name", null);
+        String video = preferences.getString("video", null);
+        int avaiblecoin = preferences.getInt("coins", 0);
         sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
-
 
 
 //        messageHelper = new chatHalper(this);
@@ -85,12 +78,11 @@ public class chat_activity extends AppCompatActivity {
 //        messageHelper.insertdata(model);
 
 
-        if (getIntent().hasExtra("isfromstart")){
+        if (getIntent().hasExtra("isfromstart")) {
             new intersital(this).Show_Ads();
-        }
-        else if(sharedPreferences.getString("adtype", "1").equals("1")){
+        } else if (sharedPreferences.getString("adtype", "1").equals("1")) {
             new Interfb(this).Show_Ads();
-        }else if(sharedPreferences.getString("adtype", "1").equals("2")){
+        } else if (sharedPreferences.getString("adtype", "1").equals("2")) {
             if (activityOpenCount % 2 != 0) {
                 new Interfb(this).Show_Ads();
             }
@@ -99,7 +91,7 @@ public class chat_activity extends AppCompatActivity {
         recyclerView = findViewById(R.id.ChatRecyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ChatAdapter(messagelist,chat_activity.this);
+        adapter = new ChatAdapter(messagelist, chat_activity.this);
         recyclerView.setAdapter(adapter);
 
 
@@ -115,14 +107,12 @@ public class chat_activity extends AppCompatActivity {
         locklinearbg = findViewById(R.id.locklinearbg);
         sendsms.setEnabled(false);
 
-        if (avaiblecoin>0)
-        {
+        if (avaiblecoin > 0) {
             chatlocklinearlayout.setVisibility(View.INVISIBLE);
             chatlinear.setVisibility(View.VISIBLE);
             locklinearbg.setVisibility(View.INVISIBLE);
 
-        }
-        else {
+        } else {
 
             chatlinear.setVisibility(View.INVISIBLE);
             locklinearbg.setVisibility(View.VISIBLE);
@@ -158,24 +148,20 @@ public class chat_activity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length()>1)
-                {
+                if (s.length() > 1) {
                     sendsms.setEnabled(true);
-                }
-                else
-                {
+                } else {
                     sendsms.setEnabled(false);
                 }
 
 
             }
+
             @Override
             public void afterTextChanged(Editable s) {
 
             }
         });
-
-
 
 
         sendsms.setOnClickListener(new View.OnClickListener() {
@@ -197,16 +183,16 @@ public class chat_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    SharedPreferences.Editor editor = getSharedPreferences("login", Context.MODE_PRIVATE).edit();
-                    editor.putString("image", imagetext);
-                    editor.putString("name", name);
-                    editor.putString("video", video);
-                    editor.putString("video", video);
-                    editor.commit();
+                SharedPreferences.Editor editor = getSharedPreferences("login", Context.MODE_PRIVATE).edit();
+                editor.putString("image", imagetext);
+                editor.putString("name", name);
+                editor.putString("video", video);
+                editor.putString("video", video);
+                editor.commit();
 
-                    Intent intent = new Intent(chat_activity.this, ConnectionVideoActivity.class);
-                    intent.putExtra("video", video);
-                    startActivity(intent);
+                Intent intent = new Intent(chat_activity.this, ConnectionVideoActivity.class);
+                intent.putExtra("video", video);
+                startActivity(intent);
 
             }
         });
@@ -215,75 +201,91 @@ public class chat_activity extends AppCompatActivity {
 
     }
 
-    private void fetchchatdata() {
-
-        Call<Chatdatamodule> call = ApiWebServices.getApiInterface().getchatMessage();
-        call.enqueue(new Callback<Chatdatamodule>() {
+    private void fetchChatData() {
+        Call<List<Chatdatamodule>> call = ApiWebServices.getApiInterface().getchatMessage();
+        call.enqueue(new Callback<List<Chatdatamodule>>() {
             @Override
-            public void onResponse(Call<Chatdatamodule> call, Response<Chatdatamodule> response) {
-                Chatdatamodule chatdatamodule = response.body();
-
-                messagelist.add(new MessagesModule(chatdatamodule.getText(),1));
-                adapter.notifyDataSetChanged();
-
-                if (chatdatamodule.getImage()!=null)
-                {
+            public void onResponse(Call<List<Chatdatamodule>> call, Response<List<Chatdatamodule>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Chatdatamodule> chatDataList = response.body();
 
 
-                    messagelist.add(new MessagesModule(chatdatamodule.getImage(),2));
-                    adapter.notifyDataSetChanged();
+                    Collections.shuffle(chatDataList);
+                    if (!chatDataList.isEmpty()) {
+
+                        Random random = new Random();
+
+                        // Generate a random index within the range of the messagelist
+                        int randomIndex = random.nextInt(chatDataList.size());
+
+                        // Retrieve the randomly selected item from the messagelist
+//                        Chatdatamodule randomMessage = chatDataList.get(randomIndex);
+
+                        Chatdatamodule chatdatamodule = chatDataList.get(randomIndex);
+                        messagelist.add(new MessagesModule(chatdatamodule.getText(), 1));
+                        adapter.notifyDataSetChanged();
+
+                        if (chatdatamodule.getImage() != null) {
+                            String imageUrl = chatdatamodule.getImage();
+
+                            messagelist.add(new MessagesModule(imageUrl, 2));
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+
+                } else {
+                    // Handle unsuccessful response
+                    int statusCode = response.code();
+                    Toast.makeText(chat_activity.this, "Failed with status code: " + statusCode, Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
-            public void onFailure(Call<Chatdatamodule> call, Throwable t) {
-//                Toast.makeText(chat_activity.this, ""+t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
+            public void onFailure(Call<List<Chatdatamodule>> call, Throwable t) {
+                Log.e("error", t.getMessage());
+                Toast.makeText(chat_activity.this, "Error: " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
+
 
     private void sendMessage() {
 
         String message = textmessage.getText().toString().trim();
         if (!message.isEmpty()) {
 
-            messagelist.add(new MessagesModule(message,3));
+            messagelist.add(new MessagesModule(message, 3));
             adapter.notifyDataSetChanged();
             textmessage.setText("");
-            fetchchatdata();
+            fetchChatData();
         }
     }
 
 
-    void recievermsg()
-    {
+    void recievermsg() {
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
-                messagelist.add(new MessagesModule("hello kaise ho",1));
+                messagelist.add(new MessagesModule("hello kaise ho", 1));
                 adapter.notifyDataSetChanged();
 
 
             }
-        },2000);
+        }, 2000);
     }
-    void imagereciever()
-    {
+
+    void imagereciever() {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 String imageurl = "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
-                messagelist.add(new MessagesModule(imageurl,2));
+                messagelist.add(new MessagesModule(imageurl, 2));
                 adapter.notifyDataSetChanged();
 
             }
 
-        },3000);
+        }, 3000);
     }
 }
