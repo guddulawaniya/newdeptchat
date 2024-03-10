@@ -55,6 +55,8 @@ public class start_activity extends AppCompatActivity implements PurchasesUpdate
         editor.putInt("perminchage", coin);
         editor.putInt("coins", 0);
         editor.commit();
+
+
         billingClient = BillingClient.newBuilder(this)
                 .setListener(this)
                 .enablePendingPurchases()

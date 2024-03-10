@@ -59,4 +59,10 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.container, fragment);
         fragmentTransaction.commit();
     }
+
+    @Override
+    public void onBackPressed() {
+        Exit_dialogBox dialogBox = new Exit_dialogBox();
+        dialogBox.show(getSupportFragmentManager(),"exit Dialogbox");
+    }
 }

@@ -3,6 +3,7 @@ package com.deptchat.livevideocallapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -26,7 +27,16 @@ import com.deptchat.livevideocallapp.Ads.ApiWebServices;
 import com.deptchat.livevideocallapp.Ads.Interfb;
 import com.deptchat.livevideocallapp.Ads.intersital;
 import com.deptchat.livevideocallapp.sqllite.chatHalper;
+import com.google.gson.JsonArray;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -54,6 +64,7 @@ public class chat_activity extends AppCompatActivity {
     private int activityOpenCount = 0;
     ChatAdapter adapter;
     String timer;
+    boolean checksms = true;
 
 
     @Override
@@ -241,6 +252,7 @@ public class chat_activity extends AppCompatActivity {
                         Chatdatamodule chatdatamodule = chatDataList.get(randomIndex);
                         messagelist.add(new MessagesModule(chatdatamodule.getText(), 1));
                         adapter.notifyDataSetChanged();
+                        checksms = false;
 
                         if (chatdatamodule.getImage() != null) {
                             String imageUrl = chatdatamodule.getImage();
@@ -274,9 +286,66 @@ public class chat_activity extends AppCompatActivity {
             messagelist.add(new MessagesModule(message, 3));
             adapter.notifyDataSetChanged();
             textmessage.setText("");
-            fetchChatData();
+
+            if (checksms)
+            {
+                fetchChatData();
+            }
+            else
+            {
+                insertdatamessage();
+            }
+           
         }
     }
+
+    public void insertdatamessage() {
+
+        String url = "https://gedgetsworld.in/PM_Kisan_Yojana/get_messsage.php";
+
+
+        class registration extends AsyncTask<String, String, String> {
+
+            @Override
+            protected void onPostExecute(String s) {
+
+                try {
+                    JSONArray array = new JSONArray(s);
+
+                    int randomIndex = new Random().nextInt(array.length());
+
+                    JSONObject obj = array.getJSONObject(randomIndex);
+                    String message = obj.getString("messages");
+                    messagelist.add(new MessagesModule(message, 1));
+                    adapter.notifyDataSetChanged();
+
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+
+                super.onPostExecute(s);
+            }
+
+            @Override
+            protected String doInBackground(String... param) {
+
+
+                try {
+                    URL url = new URL(param[0]);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    return br.readLine();
+                } catch (Exception ex) {
+                    return ex.getMessage();
+                }
+
+            }
+        }
+        registration obj = new registration();
+        obj.execute(url);
+
+    }
+
 
 
     void recievermsg() {
