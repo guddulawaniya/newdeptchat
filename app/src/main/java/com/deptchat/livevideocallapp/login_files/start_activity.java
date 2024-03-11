@@ -41,6 +41,7 @@ public class start_activity extends AppCompatActivity implements PurchasesUpdate
     private BillingClient billingClient;
     private SkuDetails skuDetails;
 
+    String appid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class start_activity extends AppCompatActivity implements PurchasesUpdate
         SharedPreferences sharedPreferences = getSharedPreferences("login", MODE_PRIVATE);
 
         String permincoin = sharedPreferences.getString("prices", "10").split("#")[18];
+         appid = sharedPreferences.getString("openad", String.valueOf(R.string.license));
 
         int coin = Integer.parseInt(permincoin);
         SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
@@ -142,7 +144,7 @@ public class start_activity extends AppCompatActivity implements PurchasesUpdate
 
     private void querySkuDetails() {
         SkuDetailsParams params = SkuDetailsParams.newBuilder()
-                .setSkusList(Arrays.asList(String.valueOf(R.string.license)))
+                .setSkusList(Arrays.asList(appid))
                 .setType(BillingClient.SkuType.INAPP)  // or BillingClient.SkuType.SUBS for subscriptions
                 .build();
 

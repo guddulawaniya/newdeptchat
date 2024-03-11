@@ -110,15 +110,7 @@ public class payments_activity extends AppCompatActivity {
                             }
                             break;
                         case 4:
-                            if (isPhonePeInstalled(bhimupi_package)) {
-
-                                otherpayment(amount);
-//                                payment(amount, bhimupi_package);
-                            } else {
-                                Toast.makeText(payments_activity.this, "BHIM UPI not Installed", Toast.LENGTH_SHORT).show();
-
-//                                redirectToPlayStore(bhimupi_package);
-                            }
+                            otherpayment(amount);
                             break;
                         case 5:
                             otherpayment(amount);
@@ -205,19 +197,10 @@ public class payments_activity extends AppCompatActivity {
                 SharedPreferences.Editor editor = getSharedPreferences("login", MODE_PRIVATE).edit();
                 editor.putInt("coins", available);
                 editor.commit();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        Intent intent = new Intent(payments_activity.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        finish();
-
-                    }
-                },1000);
-
-//
+                Intent intent = new Intent(payments_activity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();//
 
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "Payment canceled by user", Toast.LENGTH_SHORT).show();

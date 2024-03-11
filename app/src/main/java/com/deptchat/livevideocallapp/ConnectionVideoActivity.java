@@ -138,6 +138,7 @@ public class ConnectionVideoActivity extends BaseActi {
         }
 
 
+        Toast.makeText(this, ""+videotimer, Toast.LENGTH_SHORT).show();
         volumeSpeaker();
 
 

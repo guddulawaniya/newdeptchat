@@ -88,16 +88,7 @@ public class intersital implements MaxAdListener {
     }
 
     public void Facebook_Interstitial() {
-        if (dialog == null) {
-            dialog = new ProgressDialog(activity);
-            dialog.setMessage("Loading. Please wait...");
-            dialog.setCancelable(true);
-            dialog.setCanceledOnTouchOutside(false);
-        }
 
-        if (!dialog.isShowing()) {
-            dialog.show();
-        }
         facebookAd = new com.facebook.ads.InterstitialAd(activity, sharedPreferences.getString("Intersitialfb","iuhikuhiukh"));
         InterstitialAdListener interstitialAdListener = new InterstitialAdListener() {
 
@@ -136,7 +127,6 @@ public class intersital implements MaxAdListener {
                 Log.e(TAG, "onAdLoaded: facebook");
                 Log.e("tt", ad.toString());
                 if (!splash_screen.adloading.equals("STOP")) {
-dialog.dismiss();
                 }
 //                if (facebookAd.isAdLoaded()) {
 //                    facebookAd.show();

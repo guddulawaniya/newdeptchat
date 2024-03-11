@@ -1,6 +1,10 @@
 package com.deptchat.livevideocallapp.Adapters;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,14 +38,24 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
     @Override
     public void onBindViewHolder(SliderAdapterViewHolder holder, final int position) {
 
-
-
         final Datum sliderItem = list.get(position);
 
         if (sliderItem.getEnableDisable().equals("1"))
         {
             Picasso.get().load(sliderItem.getImage()).into(holder.imageViewBackground);
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String urlToRedirect = sliderItem.getUrl();
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlToRedirect));
+
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
